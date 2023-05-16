@@ -111,12 +111,12 @@ const Fashion = ({ fashionitems, addToCart, stockFlag }) => {
                             </ul>
                           </div>
                         </div>
-                        <div className="flex-1 inline-flex items-center mb-0 md:mb-3">
+                        <div className="flex-1 lg:inline-flex items-center mb-0 md:mb-3 max-w-1 overflow-hidden">
                           <span className="text-secondary whitespace-nowrap mr-3">Size:</span>
                           <div className="cursor-pointer text-black">
                             {fashionitems[item].size.sort((a, b) => b.localeCompare(a)).map((k)=>{
                               return (
-                                <span key={k} className="hover:text-gray-500 p-1 py-0">{k}</span>
+                                <span key={k} className="hover:text-gray-500 p-1 py-0 text-xs">{k}</span>
                               )
                             })}
                           </div>

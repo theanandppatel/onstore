@@ -208,7 +208,7 @@ const NavbarEle = ({ logout, user, cart, addToCart, removeFromCart, clearCart, s
           </li>
           <Link href={'/checkout'}>
             <li className="flex-1">
-              <a className={`flex h-full w-full flex-col items-center justify-center text-xs font-medium text-neutral-700 hover:text-violet-700 false ${fullScreenMenu ? 'text-slate-200' : ''}`} href="/wishlist">
+              <span className={`flex h-full w-full flex-col items-center justify-center text-xs font-medium text-neutral-700 hover:text-violet-700 false ${fullScreenMenu ? 'text-slate-200' : ''}`} >
 
 
                 <svg
@@ -254,17 +254,17 @@ const NavbarEle = ({ logout, user, cart, addToCart, removeFromCart, clearCart, s
 
 
                 <span className="mt-1">Checkout</span>
-              </a>
+              </span>
             </li>
           </Link>
           <li className="flex-1">
-            <a className={`flex h-full w-full flex-col items-center justify-center text-xs font-medium text-neutral-700 hover:text-violet-700 false ${fullScreenMenu ? 'text-slate-200' : ''}`} href="/login">
+            <div onClick={handleUserLoggedIn} className={`flex h-full w-full flex-col items-center justify-center text-xs font-medium text-neutral-700 hover:text-violet-700 false ${fullScreenMenu ? 'text-slate-200' : ''}`}>
               <svg stroke="currentColor" fill="none" strokeWidth="2" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round" height="1.2rem" width="1.2rem" xmlns="http://www.w3.org/2000/svg">
                 <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                 <circle cx="12" cy="7" r="4"></circle>
               </svg>
               <span className="mt-1">Profile</span>
-            </a>
+            </div>
           </li>
         </ul>
       </div>
