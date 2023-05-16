@@ -35,7 +35,7 @@ const Login = () => {
 
                     let data = { email: decoded_res.email, name: decoded_res.name, password: pass }
 
-                    let result = await fetch(`http://localhost:3000/api/googlesignin`, {
+                    let result = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/googlesignin`, {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'
