@@ -8,7 +8,6 @@ import { Dialog, Transition } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
 
 const NavbarEle = ({ logout, user, cart, addToCart, removeFromCart, clearCart, subTotal }) => {
-  const router = useRouter()
   const [open, setOpen] = useState(false)
   const [dropdown, setDropdown] = useState(false)
   const [sidebar, setSidebar] = useState(false)
@@ -16,6 +15,7 @@ const NavbarEle = ({ logout, user, cart, addToCart, removeFromCart, clearCart, s
   const [dropDown, setDropDown] = useState(false)
   const [fullScreenMenu, setFullScreenMenu] = useState(false)
   const[searchQuery,setSearchQuery] = useState("")
+  const router = useRouter()
 
   useEffect(() => {
     Object.keys(cart).length != 0 && setSidebar(true)
@@ -166,9 +166,9 @@ const NavbarEle = ({ logout, user, cart, addToCart, removeFromCart, clearCart, s
         <div className="flex flex-col text-white text-center text-xl font-light space-y-3">
           <Link className="text-slate-200 hover:text-violet-700 duration-300" href="/fashion">Fashion Items</Link>
           <Link className="text-slate-200 hover:text-violet-700 duration-300" href="/homefurnishing">Home Furnishing Products</Link>
-          <a className="text-slate-200 hover:text-violet-700 duration-300" href="/electronics">Electronics Items</a>
-          <a className="text-slate-200 hover:text-violet-700 duration-300" href="/grocery">Grocery Items</a>
-          <a className="text-slate-200 hover:text-violet-700 duration-300" href="/personalcare">Beauty & Personal Products</a>
+          <Link className="text-slate-200 hover:text-violet-700 duration-300" href="/electronics">Electronics Items</Link>
+          <Link className="text-slate-200 hover:text-violet-700 duration-300" href="/grocery">Grocery Items</Link>
+          <Link className="text-slate-200 hover:text-violet-700 duration-300" href="/personalcare">Beauty & Personal Products</Link>
         </div>
       </div>
 

@@ -1,15 +1,12 @@
 import React, { useState, useEffect } from 'react'
-import { AiFillCloseCircle, AiOutlinePlusCircle, AiOutlineMinusCircle } from 'react-icons/ai'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useRouter } from 'next/router';
 const orderid = require('order-id')('key');
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faLocationDot, faPhone } from '@fortawesome/free-solid-svg-icons'
+import Image from 'next/image';
 
 
 const Checkout = ({ useremail, user, cart, addToCart, removeFromCart, totalQty, subTotal, fAmt, clearCart }) => {
-    const router = useRouter()
     const [paymentmethod, setPaymentmethod] = useState(null)
     const [onlineCheck, setOnlineCheck] = useState(false)
     const [codCheck, setCodCheck] = useState(false)
@@ -22,12 +19,13 @@ const Checkout = ({ useremail, user, cart, addToCart, removeFromCart, totalQty, 
     const [email, setEmail] = useState('')
     const [phone, setPhone] = useState('')
     const [disabled, setDisabled] = useState(true)
+    const router = useRouter()
 
-    useEffect(() => {
-        if (useremail != '') {
-            setEmail(useremail)
-        }
-    }, [])
+    // useEffect(() => {
+    //     if (useremail != '') {
+    //         setEmail(useremail)
+    //     }
+    // }, [])
 
     useEffect(() => {
         if (fullname.length > 3 && address.length > 3 && zipcode.length > 3 && phone.length > 3 && (useremail.length > 3 || email.length > 3)) {
@@ -378,7 +376,7 @@ const Checkout = ({ useremail, user, cart, addToCart, removeFromCart, totalQty, 
                         {Object.keys(cart).map((k) => {
                             return (
                                 <div key={k} className="flex flex-col rounded-lg bg-white sm:flex-row">
-                                    <img className="m-2 h-24 w-28 object-contain" src={cart[k].image} alt="" />
+                                    <img className="m-2 h-24 w-28 object-contain" src={cart[k].image} alt=""/>
                                     <div className="flex w-full flex-col px-5 py-4">
                                         <span className="font-md">{cart[k].name}</span>
                                         <div className='space-x-7'>

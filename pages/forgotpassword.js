@@ -77,7 +77,7 @@ const Forgotpassword = () => {
               <h2 className="mb-1 text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl text-center">
                 Forgot Password
               </h2>
-              <p className='text-gray-500 text-center mb-14'>Enter your email and we'll send you a link to reset your password.</p>
+              <p className='text-gray-500 text-center mb-14'>Enter your email and we&apos;ll send you a link to reset your password.</p>
               <form className="mt-4 space-y-4 lg:mt-5 md:space-y-5" onSubmit={handleSubmit}>
                 <div>
                   <label

@@ -5,17 +5,16 @@ import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai'
 import 'react-toastify/dist/ReactToastify.css'
 import { useRouter } from 'next/router'
 import Script from 'next/script'
-import { getToken } from "next-auth/jwt"
 import Head from 'next/head'
 import jwt_decode from "jwt-decode"
 
 const Login = () => {
-    const router = useRouter()
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [passwordshow, setPasswordshow] = useState("true")
     const [passwordicon, setPasswordicon] = useState("true")
     const [user, setUser] = useState()
+    const router = useRouter()
 
     useEffect(() => {
         if (localStorage.getItem('myuser')) {
@@ -354,9 +353,6 @@ const Login = () => {
         //     </div>
         // </div>
         <div className='pt-14 lg:pt-3'>
-            <Head>
-                <Script src="https://accounts.google.com/gsi/client" ></Script>
-            </Head>
             <ToastContainer
                 position="top-center"
                 autoClose={4000}

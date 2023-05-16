@@ -72,10 +72,6 @@ function classNames(...classes) {
 
 const Fashionproducts = ({ error, cart, clearCart, addToCart, products, variants, buyNow, productImgArr, prodHighlights, prodDetails }) => {
 
-    if (error == 404) {
-        return <Error statusCode={404} /> //redirect to error page if product is not found
-    }
-
     const [color, setColor] = useState('')
     const [selectedColor, setSelectedColor] = useState(products.color)
     const [selectedSize, setSelectedSize] = useState('')
@@ -86,7 +82,6 @@ const Fashionproducts = ({ error, cart, clearCart, addToCart, products, variants
     const [service, setService] = useState()
     const [size, setSize] = useState('')
     const [sizeWarn, setSizeWarn] = useState(false)
-
     useEffect(() => {
         if (!error) {
             setColor(products.color)
@@ -103,6 +98,12 @@ const Fashionproducts = ({ error, cart, clearCart, addToCart, products, variants
         // console.log(prodHighlights)
 
     }, [router.query])
+    
+    if (error == 404) {
+        return <Error statusCode={404} /> //redirect to error page if product is not found
+    }
+
+
 
 
     const checkDelivery = async (e) => {

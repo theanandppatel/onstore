@@ -67,7 +67,7 @@ const MyOrder = ({ cart, subTotal, order }) => {
       <div className='px-3 sm:px-5 lg:px-72 pt-28'>
         <div className="max-w-xl">
           <h1 className="text-sm font-semibold uppercase tracking-wide text-blue-600">Thank you!</h1>
-          <p className="mt-2 text-4xl font-extrabold tracking-tight sm:text-5xl">It's on the way!</p>
+          <p className="mt-2 text-4xl font-extrabold tracking-tight sm:text-5xl">It&apos;s on the way!</p>
           {/* <p className="mt-2 text-4xl font-extrabold tracking-tight sm:text-5xl">Order #{order.orderId}</p> */}
           <p className="mt-2 text-base text-gray-500">Your order has shipped and will be with you soon.</p>
           <dl className="mt-12 text-sm font-medium flex gap-10">

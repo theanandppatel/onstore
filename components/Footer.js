@@ -191,7 +191,7 @@ const Footer = () => {
             <div className='mt-10 lg:pb-0 pb-10'>
               <div className="flex flex-col items-center justify-between gap-3 text-sm text-neutral-700 md:flex-row">
               <img className="h-12" src="../../images/logo-6.png" alt="" />
-                <a target="_blank" href="https://github.com/theanandppatel">
+                <a target="_blank" rel="noreferrer" href="https://github.com/theanandppatel">
                   <svg
                     stroke="currentColor"
                     fill="currentColor"
@@ -207,7 +207,7 @@ const Footer = () => {
                 <p>
                   Created By{" "}
                   <strong>
-                    <a target="_blank" href="https://www.linkedin.com/in/theanandppatel/">
+                    <a target="_blank" rel="noreferrer" href="https://www.linkedin.com/in/theanandppatel/">
                       Anand Patel
                     </a>
                   </strong>

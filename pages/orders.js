@@ -6,9 +6,9 @@ import mongoose from "mongoose"
 import Link from 'next/link'
 
 const Orders = ({ logout, token }) => {
-    const router = useRouter()
     const [orders, setOrders] = useState([])
     const [active, setActive] = useState('orders')
+    const router = useRouter()
 
     useEffect(() => {
         const fetchOrders = async () => {

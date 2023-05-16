@@ -13,14 +13,14 @@ const Signup = () => {
   const [phone, setPhone] = useState('')
   const [password, setPassword] = useState('')
   const [confirmpassword, setConfirmPassword] = useState('')
-  const router = useRouter()
   const [valuecheck, setValueCheck] = useState(false)
-  const regex = /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
-
   const [passwordshow, setPasswordshow] = useState("true");
   const [passwordicon, setPasswordicon] = useState("true");
   const [confirmpasswordshow, setConfirmPasswordshow] = useState("true");
   const [confirmpasswordicon, setConfirmPasswordicon] = useState("true");
+  const router = useRouter()
+  const regex = /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+
   
   useEffect(() => {
 

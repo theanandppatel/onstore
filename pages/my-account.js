@@ -9,7 +9,6 @@ const jwt = require('jsonwebtoken');
 const Myaccount = ({ logout, userdetail, user, token }) => {
 
     const [active, setActive] = useState('dashboard')
-    const router = useRouter()
     const [name, setName] = useState(userdetail.name)
     const [email, setEmail] = useState(userdetail.email)
     const [phone, setPhone] = useState(userdetail.phone)
@@ -19,6 +18,7 @@ const Myaccount = ({ logout, userdetail, user, token }) => {
     const [edit2, setEdit2] = useState(false)
     const [edit3, setEdit3] = useState(false)
     const [edit4, setEdit4] = useState(false)
+    const router = useRouter()
 
     useEffect(() => {
         if (userdetail.success != true) {

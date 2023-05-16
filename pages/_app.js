@@ -8,7 +8,6 @@ import LoadingBar from 'react-top-loading-bar'
 import Script from 'next/script'
 
 function MyApp({ Component, pageProps }) {
-  const router = useRouter()
   const [cart, setCart] = useState({})
   const [subTotal, setSubTotal] = useState(0)
   const [fAmt, setFAmt] = useState(0)
@@ -17,6 +16,7 @@ function MyApp({ Component, pageProps }) {
   const [key, setKey] = useState(0)
   const [progress, setProgress] = useState(0)
   const [useremail, setUserEmail] = useState('')
+  const router = useRouter()
 
   useEffect(() => {
     router.events.on('routeChangeStart', ()=>{

@@ -11,11 +11,6 @@ import Head from 'next/head';
 import Link from 'next/link';
 
 const Groceryitems = ({ error, cart, clearCart, addToCart, products, buyNow, productImgArr, prodHighlights, prodDetails }) => {
-
-    if (error == 404) {
-        return <Error statusCode={404} /> //redirect to error page if product is not found
-    }
-
     const [color, setColor] = useState('')
     const [selectedColor, setSelectedColor] = useState(products.color)
     const [selectedSize, setSelectedSize] = useState('')
@@ -27,11 +22,16 @@ const Groceryitems = ({ error, cart, clearCart, addToCart, products, buyNow, pro
     const [size, setSize] = useState('')
     const [sizeWarn, setSizeWarn] = useState(false)
 
-    useEffect(() => {
-        if (!error) {
-            setColor(products.color)
-        }
-    }, [router.query])
+    
+        useEffect(() => {
+            if (!error) {
+                setColor(products.color)
+            }
+        }, [router.query])
+    if (error == 404) {
+        return <Error statusCode={404} /> //redirect to error page if product is not found
+    }
+
 
 
     const checkDelivery = async (e) => {

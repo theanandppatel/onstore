@@ -1,6 +1,4 @@
 import { useState, useEffect } from 'react'
-import { StarIcon } from '@heroicons/react/20/solid'
-import { RadioGroup } from '@headlessui/react'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useRouter } from 'next/router'
@@ -11,16 +9,11 @@ import Head from 'next/head';
 import Link from 'next/link';
 
 const Beautyproducts = ({ error, cart, clearCart, addToCart, products, buyNow, productImgArr, prodHighlights, prodDetails }) => {
-
-    if (error == 404) {
-        return <Error statusCode={404} /> //redirect to error page if product is not found
-    }
-
+    const router = useRouter()
     const [color, setColor] = useState('')
     const [selectedColor, setSelectedColor] = useState(products.color)
     const [selectedSize, setSelectedSize] = useState('')
     const [image, setImage] = useState(0)
-    const router = useRouter()
     const { slug } = router.query
     const [pin, setPin] = useState()
     const [service, setService] = useState()
@@ -28,10 +21,16 @@ const Beautyproducts = ({ error, cart, clearCart, addToCart, products, buyNow, p
     const [sizeWarn, setSizeWarn] = useState(false)
 
     useEffect(() => {
-        if (!error) {
+        if(!error){
             setColor(products.color)
         }
+        
     }, [router.query])
+    if (error == 404) {
+        return <Error statusCode={404} /> //redirect to error page if product is not found
+    }
+
+
 
 
     const checkDelivery = async (e) => {
