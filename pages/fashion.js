@@ -180,8 +180,6 @@ export async function getServerSideProps(context) {
   }
   let products = await Product.find({ category: 'fashion-products' })
 
-  console.log(products)
-
   let fashionitems = {}
   let stockFlag = false
 

@@ -35,7 +35,7 @@ const Electronics = ({ electronicproducts, stockFlag }) => {
                         <button onClick={() => { `${addToCart(electronicproducts[item].slug, 1, electronicproducts[item].price, electronicproducts[item].title , electronicproducts[item].size, electronicproducts[item].color, electronicproducts[item].category)}` }} className="transition ease-in duration-300 bg-gray-800  hover:text-purple-500 shadow hover:shadow-md text-white rounded-full w-8 h-8 text-center p-0.5"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" className="bi bi-cart ml-1" viewBox="0 0 16 16" id="IconChangeColor"> <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" id="mainIconPathAttribute"></path> </svg></button>
                       </div> */}
 
-                      <Link href={`/products/${electronicproducts[item].category}/${electronicproducts[item].slug}`}><img src={`${electronicproducts[item].img[0]}`} alt= {electronicproducts[item].title} className="w-full h-full object-contain rounded-2xl cursor-pointer" /></Link>{console.log(electronicproducts[item].img)}
+                      <Link href={`/products/${electronicproducts[item].category}/${electronicproducts[item].slug}`}><img src={`${electronicproducts[item].img[0]}`} alt= {electronicproducts[item].title} className="w-full h-full object-contain rounded-2xl cursor-pointer" /></Link>
                     </div>
                     <div>
                       <div>
