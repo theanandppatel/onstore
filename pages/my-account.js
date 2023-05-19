@@ -231,6 +231,17 @@ const Myaccount = ({ logout, userdetail, user, token }) => {
 
     return (
         <div className='mb-28'>
+            <ToastContainer
+                position="top-right"
+                autoClose={4000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+            />
             <h1 className='text-4xl font-bold lg:ml-24 pt-32 ml-5'>My Account</h1>
             <div className='lg:flex lg:flex-row gap-48'>
                 <div className="h-full p-3 lg:space-y-2 lg:w-60 lg:ml-24 lg:mt-20 mt-10 mb-16 w-full">
