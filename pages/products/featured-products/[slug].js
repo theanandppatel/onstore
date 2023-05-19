@@ -356,7 +356,6 @@ export async function getServerSideProps(context) {
     let colorSlug = {}
     let prodHighlights = products.highlights
     let prodDetails = products.details
-    // console.log("variants",imgVariants);
 
 
     for (let item of variants) {

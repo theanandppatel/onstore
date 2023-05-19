@@ -57,7 +57,6 @@ const Search = (fetchProducts, stockFlag) => {
                             <ul className="flex flex-row justify-center items-center space-x-2">
                               {/* {queryProducts[item].color.map((k) => {
                                 let bgColor = `bg-${k}`
-                                console.log(`k: ${k}, borderClass: ${bgColor}`);
                                 return (
                                   <li key={k}>
                                     <span className={`block p-1 border-2 border-white hover:border-${k}-600 rounded-full transition ease-in duration-300`}>

@@ -100,7 +100,7 @@ const Beautyproducts = ({ error, cart, clearCart, addToCart, products, buyNow, p
     //     }
     //     setColor(newColor)
     //     let url = `${process.env.NEXT_PUBLIC_HOST}/products/fashion-products/${variants[newColor][newSize]['slug']}`
-    //     console.log(url)
+    //  
     //     // window.location = url;
     //     router.push(url)
     // }

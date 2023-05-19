@@ -101,7 +101,7 @@ const Groceryitems = ({ error, cart, clearCart, addToCart, products, buyNow, pro
     //     }
     //     setColor(newColor)
     //     let url = `${process.env.NEXT_PUBLIC_HOST}/products/fashion-products/${variants[newColor][newSize]['slug']}`
-    //     console.log(url)
+    //   
     //     // window.location = url;
     //     router.push(url)
     // }
@@ -385,7 +385,6 @@ export async function getServerSideProps(context) {
     // let colorSizeSlug = {}
     let prodHighlights = products.highlights
     let prodDetails = products.details
-    // console.log("variants",variants);
 
 
     // for (let item of variants) {

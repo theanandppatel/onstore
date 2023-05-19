@@ -27,7 +27,6 @@ const HomeFurnishingItems = ({ error, cart, clearCart, addToCart, products, buyN
             setColor(products.color)
         }
 
-        // console.log(products)
     }, [router.query])
     if (error == 404) {
         return <Error statusCode={404} /> //redirect to error page if product is not found
@@ -103,7 +102,7 @@ const HomeFurnishingItems = ({ error, cart, clearCart, addToCart, products, buyN
     //     }
     //     setColor(newColor)
     //     let url = `${process.env.NEXT_PUBLIC_HOST}/products/fashion-products/${variants[newColor][newSize]['slug']}`
-    //     console.log(url)
+    //     
     //     // window.location = url;
     //     router.push(url)
     // }
@@ -387,7 +386,6 @@ export async function getServerSideProps(context) {
     let prodHighlights = products.highlights
     let prodDetails = products.details
 
-    // console.log("variants",variants);
 
 
     // for (let item of variants) {

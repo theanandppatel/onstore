@@ -14,8 +14,6 @@ const Home = ({ addToCart, featuredproducts, recommendedproducts }) => {
   const router = useRouter()
   const { slug } = router.query
 
-
-  // console.log(featuredproducts)
   return (
     <>
       <Head>

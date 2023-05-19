@@ -39,8 +39,9 @@ const Signup = () => {
                 let pass = generatePassword();
                 let data = { email: decoded_res.email, name: decoded_res.name, password: pass }
 
+
                 try{
-                let result = await fetch(`${NEXT_PUBLIC_HOST}/api/googlesignin`, {
+                let result = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/googlesignin`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -48,7 +49,6 @@ const Signup = () => {
                     },
                     body: JSON.stringify(data)
                 });
-
                 let response = await result.json()
 
                 if (response.success) {
@@ -107,7 +107,7 @@ const Signup = () => {
             client_id: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID,
             callback: handleCallbackRespnse
         });
-        
+
         google.accounts.id.renderButton(
             document.getElementById("g_id_signin"),
             { theme: "filled_blue", size: "large" }

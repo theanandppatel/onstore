@@ -165,7 +165,6 @@ const Login = () => {
         e.preventDefault();
         let res = await signIn("google");
         // if (response && response.success) {
-        //   console.log(response.message);
         //   // Do something with the message
         // } else {
         //   console.error('Sign-in failed.');
@@ -189,7 +188,6 @@ const Login = () => {
         //     });
 
         //     let response = await res.json()
-        //     console.log("Ola")
 
         //     if (response.success) {
         //         localStorage.setItem("myuser", JSON.stringify({ token: response.token, email: response.email }))
@@ -209,7 +207,6 @@ const Login = () => {
 
         //     }
         //     else {
-        //         console.log("Hello")
         //         toast.error('Invalid Credentials', {
         //             position: "top-center",
         //             autoClose: 4000,

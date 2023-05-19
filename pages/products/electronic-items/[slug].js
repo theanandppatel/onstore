@@ -383,8 +383,6 @@ export async function getServerSideProps(context) {
         products = recommendedprod
     }
 
-    // console.log("variants",imgVariants);
-
 
     for (let item of variants) {
         colorSlug[item.color] = { slug: item.slug }

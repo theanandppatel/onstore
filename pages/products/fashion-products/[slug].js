@@ -87,15 +87,6 @@ const Fashionproducts = ({ error, cart, clearCart, addToCart, products, variants
             setColor(products.color)
             // setSelectedSize(products.size)
         }
-        // console.log(productImgArr)
-        // setSelectedSize(products.size)
-        // let prodImg1 = productImgArr[color][0].imgSrc;
-        // let prodImg2 = productImgArr[color][0].imgSrc;
-        // let prodImg3 = productImgArr[color][0].imgSrc;
-        // let prodImg4 = productImgArr[color][0].imgSrc;
-        // console.log(color)
-        // console.log(productImgArr[color])
-        // console.log(prodHighlights)
 
     }, [router.query])
     
@@ -526,7 +517,6 @@ export async function getServerSideProps(context) {
     let colorSizeSlug = {}
     let prodHighlights = products.highlights
     let prodDetails = products.details
-    // console.log("variants",variants);
 
 
     for (let item of variants) {
