@@ -8,7 +8,8 @@ export default function Document() {
       <body>
         <Main />
         <NextScript />
-        <Script src='https://accounts.google.com/gsi/client'/>
+        <Script src="https://accounts.google.com/gsi/client" />
+        <Script src="/google-signin.js" />
       </body>
     </Html>
   )
