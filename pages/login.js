@@ -138,9 +138,6 @@ const Login = () => {
         return password;
     }
 
-    const handleSignIn = async () => {
-    }
-
     const callHandleSignIn = async (e) => {
         e.preventDefault();
         let data1 = await handleGoogleSignIn(e);
@@ -149,7 +146,7 @@ const Login = () => {
 
             const data = { email: session.user.email, name: session.user.name };
 
-            let result = await fetch(`http://localhost:3000/api/googlesignin`, {
+            let result = await fetch(`${NEXT_PUBLIC_HOST}/api/googlesignin`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -249,7 +246,7 @@ const Login = () => {
         let data = { email, password }
 
 
-        let res = await fetch(`http://localhost:3000/api/login`, {
+        let res = await fetch(`${NEXT_PUBLIC_HOST}/api/login`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
