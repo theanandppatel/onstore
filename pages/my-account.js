@@ -363,7 +363,7 @@ const Myaccount = ({ logout, userdetail, user, token }) => {
 
 
                 </div>
-                <div className="overflow-hidden bg-white shadow sm:rounded-lg w-full lg:w-2/4 mt-10 lg:mt-24 mb-32 mx-5 lg:mx-0">
+                <div className="overflow-hidden bg-white shadow sm:rounded-lg lg:w-2/4 mt-10 lg:mt-24 mb-32 mx-5 lg:mx-0">
 
                     <div className="px-4 py-5 sm:px-6">
                         <h3 className="text-lg font-medium leading-6 text-gray-900">User Details</h3>
