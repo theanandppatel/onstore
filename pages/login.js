@@ -146,7 +146,7 @@ const Login = () => {
 
             const data = { email: session.user.email, name: session.user.name };
 
-            let result = await fetch(`${NEXT_PUBLIC_HOST}/api/googlesignin`, {
+            let result = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/googlesignin`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -243,7 +243,7 @@ const Login = () => {
         let data = { email, password }
 
 
-        let res = await fetch(`${NEXT_PUBLIC_HOST}/api/login`, {
+        let res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/login`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
