@@ -103,14 +103,15 @@ const Signup = () => {
             }
         }
 
-        google.accounts.id.renderButton(
-            document.getElementById("g_id_signin"),
-            { theme: "filled_blue", size: "large" }
-        )
         google.accounts.id.initialize({
             client_id: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID,
             callback: handleCallbackRespnse
         });
+        
+        google.accounts.id.renderButton(
+            document.getElementById("g_id_signin"),
+            { theme: "filled_blue", size: "large" }
+        )
 
         // eslint-disable-next-line
     }
