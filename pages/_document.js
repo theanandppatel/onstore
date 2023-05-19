@@ -1,4 +1,5 @@
 import { Html, Head, Main, NextScript } from 'next/document'
+import Script from 'next/script'
 
 export default function Document() {
   return (
@@ -7,7 +8,7 @@ export default function Document() {
       <body>
         <Main />
         <NextScript />
-        <script src='https://accounts.google.com/gsi/client'/>
+        <Script src='https://accounts.google.com/gsi/client'/>
       </body>
     </Html>
   )
