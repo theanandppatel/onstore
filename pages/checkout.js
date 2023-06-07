@@ -264,12 +264,12 @@ const Checkout = ({ useremail, user, cart, addToCart, removeFromCart, totalQty, 
 
             var options = {
                 key: process.env.RAZORPAY_KEY, // Enter the Key ID generated from the Dashboard
-                name: "Ecloud Adda",
+                name: "Onstore",
                 currency: data.currency,
                 amount: data.amount,
                 order_id: data.id,
                 description: "Thankyou for your Shopping",
-                image: "/images/circle-logo.png",
+                image: "/images/logo-6.png",
                 handler: async function (response) {
 
                     //Update status into orders table after checking transaction status
