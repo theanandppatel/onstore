@@ -116,7 +116,7 @@ const NavbarEle = ({ logout, user, cart, addToCart, removeFromCart, clearCart, s
         </Link>
         <div
           className={`nav-links md:visible invisible duration-500 md:static absolute md:min-h-fit min-h-[40vh] left-0 top-[-100%] md:w-auto  w-full flex items-center px-5`}>
-          <ul className="flex md:flex-row flex-col md:items-center md:gap-[4vw] gap-8">
+          <ul className="flex md:flex-row flex-col md:items-center lg:gap-[4vw] md:gap-[2vw] gap-8 md:text-xs lg:text-base text-base">
             <li>
               <Link className="hover:text-gray-500" href={'/fashion'}>Fashion</Link>
             </li>
@@ -142,12 +142,12 @@ const NavbarEle = ({ logout, user, cart, addToCart, removeFromCart, clearCart, s
               <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
             </svg>
           </form>
-          <svg onClick={toggleCart} stroke="currentColor" fill="none" strokeWidth="2" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round" className="text-neutral-700 invisible md:visible transition-colors hover:text-violet-700 cursor-pointer" height="20px" width="20px" xmlns="http://www.w3.org/2000/svg">
+          <svg onClick={toggleCart} stroke="currentColor" fill="none" strokeWidth="2" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round" className="text-neutral-700 invisible md:visible transition-colors hover:text-violet-700 cursor-pointer md:w-6" height="20px" width="20px" xmlns="http://www.w3.org/2000/svg">
             <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
             <line x1="3" y1="6" x2="21" y2="6"></line>
             <path d="M16 10a4 4 0 0 1-8 0"></path>
           </svg>
-          <svg onClick={handleUserLoggedIn} stroke="currentColor" fill="none" strokeWidth="2" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round" className="text-neutral-700  invisible md:visible transition-colors hover:text-violet-700 cursor-pointer" height="20px" width="20px" xmlns="http://www.w3.org/2000/svg">
+          <svg onClick={handleUserLoggedIn} stroke="currentColor" fill="none" strokeWidth="2" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round" className="text-neutral-700 md:w-6 invisible md:visible transition-colors hover:text-violet-700 cursor-pointer" height="20px" width="20px" xmlns="http://www.w3.org/2000/svg">
             <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
             <circle cx="12" cy="7" r="4"></circle>
           </svg>
