@@ -185,7 +185,7 @@ const Home = ({ addToCart, featuredproducts, recommendedproducts }) => {
                     <div>
                       <h3 className="text-xs font-bold text-gray-900 sm:text-sm md:text-base">
                         <Link href={`/products/${featuredproducts[item].category}/${featuredproducts[item].slug}`}>
-                          <span className='cursor-pointer'>
+                          <span className='cursor-pointer line-clamp-2'>
                             {featuredproducts[item].title}
                             <span className="absolute inset-0" aria-hidden="true"></span>
                           </span>
@@ -349,7 +349,7 @@ const Home = ({ addToCart, featuredproducts, recommendedproducts }) => {
                     <div className='cursor-pointer'>
                       <img className="hover:grow hover:shadow-lg w-full h-80 object-contain py-5" src={`${recommendedproducts[item].img[0]}`} />
                       <div className="pt-3 flex items-center justify-between">
-                        <p className="text-black text-base pr-3">{featuredproducts[item].title}</p>
+                        <p className="text-black text-base pr-3 line-clamp-2">{featuredproducts[item].title}</p>
                         <p className="pt-1 pr-3 text-black font-bold">₹{recommendedproducts[item].price.toLocaleString('en-IN')}</p>
                       </div>
                     </div>
