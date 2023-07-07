@@ -182,7 +182,7 @@ export async function getServerSideProps(context) {
         },
         body: JSON.stringify({ token: token })
       });
-  
+        
       let res = await data.json()
   
     // let res = await data.json()
