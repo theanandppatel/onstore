@@ -8,6 +8,7 @@ import LoadingBar from 'react-top-loading-bar'
 import Script from 'next/script'
 
 function MyApp({ Component, pageProps }) {
+  const [open, setOpen] = useState(false)
   const [cart, setCart] = useState({})
   const [subTotal, setSubTotal] = useState(0)
   const [fAmt, setFAmt] = useState(0)
@@ -135,8 +136,8 @@ function MyApp({ Component, pageProps }) {
       waitingTime={800}
       onLoaderFinished={() => setProgress(0)}
     />
-    <NavbarEle key={key} logout={logout} user={user} cart={cart} addToCart={addToCart} removeFromCart={removeFromCart} clearCart={clearCart} subTotal={subTotal} totalQty={totalQty} />
-    <Component logout={logout} cart={cart} user={user} useremail={useremail} addToCart={addToCart} removeFromCart={removeFromCart} buyNow={buyNow} clearCart={clearCart} subTotal={subTotal} totalQty={totalQty} fAmt={fAmt} {...pageProps} />
+    <NavbarEle key={key} open={open} setOpen={setOpen} logout={logout} user={user} cart={cart} addToCart={addToCart} removeFromCart={removeFromCart} clearCart={clearCart} subTotal={subTotal} totalQty={totalQty} />
+    <Component logout={logout} open={open} setOpen={setOpen} cart={cart} user={user} useremail={useremail} addToCart={addToCart} removeFromCart={removeFromCart} buyNow={buyNow} clearCart={clearCart} subTotal={subTotal} totalQty={totalQty} fAmt={fAmt} {...pageProps} />
     <Footer />
   </>
 }

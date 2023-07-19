@@ -10,7 +10,7 @@ import Error from 'next/error'
 import Head from 'next/head';
 import Link from 'next/link';
 
-const Electronicitems = ({ error, cart, clearCart, variants, addToCart, products, buyNow, productImgArr, prodHighlights, prodDetails }) => {
+const Electronicitems = ({ error, open, setOpen, cart, clearCart, variants, addToCart, products, buyNow, productImgArr, prodHighlights, prodDetails }) => {
     
     const [color, setColor] = useState('')
     const [selectedColor, setSelectedColor] = useState(products.color)
@@ -83,7 +83,7 @@ const Electronicitems = ({ error, cart, clearCart, variants, addToCart, products
 
     const handleAddToBag = (e) => {
         e.preventDefault()
-
+        setOpen(true)
         let slug = products.slug
         addToCart(slug, products.img[0], 1, products.price, products.title, "", color, products.category)
     }

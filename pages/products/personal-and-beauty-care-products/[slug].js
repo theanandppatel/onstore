@@ -8,7 +8,7 @@ import Error from 'next/error'
 import Head from 'next/head';
 import Link from 'next/link';
 
-const Beautyproducts = ({ error, cart, clearCart, addToCart, products, buyNow, productImgArr, prodHighlights, prodDetails }) => {
+const Beautyproducts = ({ error, open, setOpen, cart, clearCart, addToCart, products, buyNow, productImgArr, prodHighlights, prodDetails }) => {
     const router = useRouter()
     const [color, setColor] = useState('')
     const [selectedColor, setSelectedColor] = useState(products.color)
@@ -107,7 +107,7 @@ const Beautyproducts = ({ error, cart, clearCart, addToCart, products, buyNow, p
 
     const handleAddToBag = (e) => {
         e.preventDefault()
-
+        setOpen(true)
         let slug = products.slug
         addToCart(slug, products.img[0], 1, products.price, products.title, "", "", products.category)
     }

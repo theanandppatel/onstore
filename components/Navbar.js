@@ -7,8 +7,7 @@ import { Fragment } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
 
-const NavbarEle = ({ logout, user, cart, addToCart, removeFromCart, clearCart, subTotal }) => {
-  const [open, setOpen] = useState(false)
+const NavbarEle = ({ logout, open,  setOpen, user, cart, addToCart, removeFromCart, clearCart, subTotal }) => {
   const [dropdown, setDropdown] = useState(false)
   const [sidebar, setSidebar] = useState(false)
   const [token, setToken] = useState('')
@@ -29,6 +28,10 @@ const NavbarEle = ({ logout, user, cart, addToCart, removeFromCart, clearCart, s
       setToken(JSON.parse(localStorage.getItem("myuser")).token)
     }
   }, [])
+
+  useEffect(()=>{
+    setFullScreenMenu(false)
+  },[router.query])
 
   useEffect(() => {
     Object.keys(cart).length != 0 && setSidebar(true)

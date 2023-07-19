@@ -12,7 +12,7 @@ import Link from 'next/link';
 import FeaturedProduct from '../../../models/FeaturedProduct';
 import RecommendedProduct from '../../../models/RecommendedProduct';
 
-const Electronicitems = ({ error, cart, clearCart, variants, addToCart, products, buyNow, productImgArr, prodHighlights, prodDetails}) => {
+const Electronicitems = ({ error, open, setOpen, cart, clearCart, variants, addToCart, products, buyNow, productImgArr, prodHighlights, prodDetails}) => {
     const [color, setColor] = useState('')
     const [selectedColor, setSelectedColor] = useState(products.color)
     const [selectedSize, setSelectedSize] = useState('')
@@ -82,7 +82,7 @@ const Electronicitems = ({ error, cart, clearCart, variants, addToCart, products
 
     const handleAddToBag = (e) => {
         e.preventDefault()
-
+        setOpen(true)
         let slug = products.slug
         addToCart(slug, products.img[0], 1, products.price, products.title, "", color, products.category)
     }
