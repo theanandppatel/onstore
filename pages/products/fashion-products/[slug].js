@@ -10,6 +10,22 @@ import Error from 'next/error'
 import Head from 'next/head';
 import Link from 'next/link';
 
+const product = {
+    sizes: [
+        { size: 'XXS' },
+        { size: 'XS' },
+        { size: 'S' },
+        { size: 'M' },
+        { size: 'L' },
+        { size: 'XL' },
+        { size: '2XL' },
+        { size: '3XL' },
+    ]
+}
+
+function classNames(...classes) {
+    return classes.filter(Boolean).join(' ')
+}
 
 const Fashionproducts = ({ error, open, setOpen, cart, clearCart, addToCart, products, variants, buyNow, productImgArr, prodHighlights, prodDetails }) => {
 
@@ -111,12 +127,12 @@ const Fashionproducts = ({ error, open, setOpen, cart, clearCart, addToCart, pro
 
     const handleAddToBag = (e) => {
         e.preventDefault()
-        setOpen(true)
         if (selectedSize == '') {
             setSizeWarn(true)
         }
         else {
             setSizeWarn(false)
+            setOpen(true)
             let slug = variants[color][selectedSize.size]['slug']
             addToCart(slug, productImgArr[0], 1, products.price, products.title, selectedSize.size, color, products.category)
         }

@@ -70,41 +70,6 @@ const Beautyproducts = ({ error, open, setOpen, cart, clearCart, addToCart, prod
         setService()
     }
 
-    // const refreshVariant = (newSize, newColor) => {
-    //     if (newSize == null) {
-
-    //         if (Object.keys(variants[newColor]).includes('XXS')) {
-    //             newSize = 'XXS'
-    //         }
-    //         else if (Object.keys(variants[newColor]).includes('XS')) {
-    //             newSize = 'XS'
-    //         }
-    //         else if (Object.keys(variants[newColor]).includes('S')) {
-    //             newSize = 'S'
-    //         }
-    //         else if (Object.keys(variants[newColor]).includes('M')) {
-    //             newSize = 'M'
-    //         }
-    //         else if (Object.keys(variants[newColor]).includes('L')) {
-    //             newSize = 'L'
-    //         }
-    //         else if (Object.keys(variants[newColor]).includes('XL')) {
-    //             newSize = 'XL'
-    //         }
-    //         else if (Object.keys(variants[newColor]).includes('2XL')) {
-    //             newSize = '2XL'
-    //         }
-    //         else if (Object.keys(variants[newColor]).includes('3XL')) {
-    //             newSize = '3XL'
-    //         }
-    //     }
-    //     setColor(newColor)
-    //     let url = `${process.env.NEXT_PUBLIC_HOST}/products/fashion-products/${variants[newColor][newSize]['slug']}`
-    //  
-    //     // window.location = url;
-    //     router.push(url)
-    // }
-
     const handleAddToBag = (e) => {
         e.preventDefault()
         setOpen(true)
