@@ -11,9 +11,9 @@ const handler = async (req, res) => {
             const decode = jwt.verify(token, process.env.JWT_SECRET);
 
             // Check if the token has expired
+            console.log(decode.exp, Date.now());
 
             if (decode && decode.exp && Date.now() >= decode.exp * 1000) {
-                localStorage.removeItem('myuser');
                 return res.status(401).json({ success: false, message: 'Token has expired' });
             }
 

@@ -24,6 +24,10 @@ const NavbarEle = ({ logout, open,  setOpen, user, cart, addToCart, removeFromCa
       setSidebar(false)
     }
 
+    if(!localStorage.getItem("myuser")){
+      setToken('');
+    }
+    
     if (localStorage.getItem("myuser")) {
       setToken(JSON.parse(localStorage.getItem("myuser")).token)
     }
