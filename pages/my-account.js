@@ -23,6 +23,15 @@ const Myaccount = ({ logout, userdetail, user, token }) => {
     useEffect(() => {
         if (userdetail.success != true) {
             router.push('/')
+            toast.error(userdetail.message, {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
         }
     }, [])
 

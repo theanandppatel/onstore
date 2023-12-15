@@ -7,9 +7,7 @@ const handler = async (req, res) => {
     if (req.method == 'POST') {
 
         for (let index = 0; index < req.body.length; index++) {
-
             let find = await Product.findOne({ "slug": req.body[index].slug })
-
             if (!find) {
                 let p = new Product({
                     title: req.body[index].title,

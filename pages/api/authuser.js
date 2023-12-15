@@ -7,7 +7,16 @@ const handler = async (req, res) => {
 
     if (req.method == 'POST') {
         try {
-            const decode = jwt.verify(req.body.token, process.env.JWT_SECRET);
+            const token = req.body.token;
+            const decode = jwt.verify(token, process.env.JWT_SECRET);
+
+            // Check if the token has expired
+
+            if (decode && decode.exp && Date.now() >= decode.exp * 1000) {
+                localStorage.removeItem('myuser');
+                return res.status(401).json({ success: false, message: 'Token has expired' });
+            }
+
             let details = JSON.parse(JSON.stringify(decode))
             let user = await Users.findOne({"email":details.email})
             if(user){
@@ -15,11 +24,11 @@ const handler = async (req, res) => {
                 let name = user.name,phone = user.phone,email = user.email
                 res.status(200).json({success:true,name,phone,email,decrypttext})
             }else{
-                res.status(400).json({success:false})
+                res.status(400).json({success:false, message: "User Doesn't exist"})
             }
             
         } catch (error) {
-            res.status(400).json({success:false})
+            res.status(400).json({success:false, message: "Some Error Occured, Try again!"})
         }
         
     }else{
