@@ -1,252 +1,273 @@
-import React, { useState, useEffect } from 'react'
-import mongoose from "mongoose"
-import { useRouter } from 'next/router'
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import Link from 'next/link';
-const jwt = require('jsonwebtoken');
+import React, { useState, useEffect } from "react";
+import mongoose from "mongoose";
+import { useRouter } from "next/router";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import Link from "next/link";
+const jwt = require("jsonwebtoken");
 
 const Myaccount = ({ logout, userdetail, user, token }) => {
+  const [active, setActive] = useState("dashboard");
+  const [name, setName] = useState(userdetail.name);
+  const [email, setEmail] = useState(userdetail.email);
+  const [phone, setPhone] = useState(userdetail.phone);
+  const [password, setPassword] = useState("");
+  const [passwordlen, setPasswordLen] = useState(userdetail.decrypttext);
+  const [edit1, setEdit1] = useState(false);
+  const [edit2, setEdit2] = useState(false);
+  const [edit3, setEdit3] = useState(false);
+  const [edit4, setEdit4] = useState(false);
+  const router = useRouter();
 
-    const [active, setActive] = useState('dashboard')
-    const [name, setName] = useState(userdetail.name)
-    const [email, setEmail] = useState(userdetail.email)
-    const [phone, setPhone] = useState(userdetail.phone)
-    const [password, setPassword] = useState('')
-    const [passwordlen, setPasswordLen] = useState(userdetail.decrypttext)
-    const [edit1, setEdit1] = useState(false)
-    const [edit2, setEdit2] = useState(false)
-    const [edit3, setEdit3] = useState(false)
-    const [edit4, setEdit4] = useState(false)
-    const router = useRouter()
+  // Assuming 'logout' and 'userdetail' are available from props or context
 
-    useEffect(() => {
-        if (userdetail.success != true) {
-            localStorage.removeItem('myuser');
-            router.push('/');
-        }
-    }, [])
-
-
-    const handleLogout = () => {
-        logout()
-
-        toast.success('Your successfully logged out', {
-            position: "top-right",
-            autoClose: 3000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-        });
+  useEffect(() => {
+    if (userdetail && userdetail.success !== true) {
+        localStorage.removeItem('myuser');
+        router.push(`/login?redirect=${userdetail.message}`);
     }
+  }, [userdetail]); // Add 'userdetail' as a dependency to trigger the effect when it changes
 
-    const handleOrdersClick = () => {
-        router.push('/orders?usertoken=' + token)
+
+  const handleLogout = () => {
+    logout();
+
+    toast.success("You are successfully logged out", {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  };
+
+  const handleOrdersClick = () => {
+    router.push("/orders?usertoken=" + token);
+  };
+
+  const handleChange = (e) => {
+    if (e.target.name == "name") {
+      setName(e.target.value);
+    } else if (e.target.name == "phone") {
+      setPhone(e.target.value);
+    } else if (e.target.name == "email") {
+      setEmail(e.target.value);
+    } else if (e.target.name == "password") {
+      setPassword(e.target.value);
     }
+  };
 
-    const handleChange = (e) => {
-        if (e.target.name == 'name') {
-            setName(e.target.value)
-        } else if (e.target.name == 'phone') {
-            setPhone(e.target.value)
-        } else if (e.target.name == 'email') {
-            setEmail(e.target.value)
-        } else if (e.target.name == 'password') {
-            setPassword(e.target.value)
-        }
+  const handleCancel1 = () => {
+    setName(userdetail.name);
+    setEdit1(false);
+  };
+
+  const handleCancel2 = () => {
+    setPhone(userdetail.phone);
+    setEdit2(false);
+  };
+  const handleCancel3 = () => {
+    setEmail(userdetail.email);
+    setEdit3(false);
+  };
+  const handleCancel4 = () => {
+    setEdit4(false);
+  };
+
+  const handleUpdate1 = async () => {
+    let updateData = {
+      oemail: userdetail.email,
+      name,
+      phone: userdetail.phone,
+      email: userdetail.email,
+      password: userdetail.password,
+    };
+
+    let data = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/updateuser`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ updateData: updateData }),
+    });
+
+    let res = await data.json();
+    if (res.success == true) {
+      setEdit1(false);
+      setName(res.name);
+      toast.success("Your name is updated successfully", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    } else {
+      toast.error("Some error occured, Try again!", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     }
+  };
 
-    const handleCancel1 = () => {
-        setName(userdetail.name)
-        setEdit1(false)
+  const handleUpdate2 = async () => {
+    let updateData = {
+      oemail: userdetail.email,
+      name: userdetail.name,
+      phone,
+      email: userdetail.email,
+      password: userdetail.password,
+    };
+
+    let data = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/updateuser`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ updateData: updateData }),
+    });
+
+    let res = await data.json();
+    if (res.success == true) {
+      setEdit2(false);
+      setPhone(res.phone);
+      toast.success("Your contact number is updated successfully ", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    } else {
+      toast.error("Some error occured, Try again!", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     }
+  };
+  const handleUpdate3 = async () => {
+    let updateData = {
+      oemail: userdetail.email,
+      name: userdetail.name,
+      phone: userdetail.phone,
+      email,
+      password: userdetail.password,
+    };
 
-    const handleCancel2 = () => {
-        setPhone(userdetail.phone)
-        setEdit2(false)
+    let data = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/updateuser`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ updateData: updateData }),
+    });
+
+    let res = await data.json();
+
+    if (res.success == true) {
+      setEdit3(false);
+      setEmail(res.email);
+      localStorage.clear();
+      router.push("/");
+      toast.success("Your email is updated successfully", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    } else {
+      toast.error("Some error occured, Try again!", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     }
-    const handleCancel3 = () => {
-        setEmail(userdetail.email)
-        setEdit3(false)
+  };
+  const handleUpdate4 = async () => {
+    let updateData = {
+      oemail: userdetail.email,
+      name: userdetail.name,
+      phone: userdetail.phone,
+      email: userdetail.email,
+      password,
+    };
+
+    let data = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/updateuser`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ updateData: updateData }),
+    });
+
+    let res = await data.json();
+
+    if (res.success == true) {
+      setEdit4(false);
+      setPasswordLen(password.length);
+      user.value = null;
+      toast.success("Your password is updated successfully", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    } else {
+      toast.error("Some error occured, Try again!", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     }
-    const handleCancel4 = () => {
-        setEdit4(false)
-    }
+  };
 
-    const handleUpdate1 = async () => {
-        let updateData = { oemail: userdetail.email, name, phone: userdetail.phone, email: userdetail.email, password: userdetail.password }
-
-        let data = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/updateuser`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-
-            },
-            body: JSON.stringify({ updateData: updateData })
-        });
-
-        let res = await data.json()
-        if (res.success == true) {
-            setEdit1(false)
-            setName(res.name)
-            toast.success('Your name is updated successfully', {
-                position: "top-right",
-                autoClose: 3000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
-        } else {
-            toast.error('Some error occured, Try again!', {
-                position: "top-right",
-                autoClose: 3000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
-        }
-    }
-
-    const handleUpdate2 = async () => {
-        let updateData = { oemail: userdetail.email, name: userdetail.name, phone, email: userdetail.email, password: userdetail.password }
-
-        let data = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/updateuser`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-
-            },
-            body: JSON.stringify({ updateData: updateData })
-        });
-
-        let res = await data.json()
-        if (res.success == true) {
-            setEdit2(false)
-            setPhone(res.phone)
-            toast.success('Your contact number is updated successfully ', {
-                position: "top-right",
-                autoClose: 3000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
-        } else {
-            toast.error('Some error occured, Try again!', {
-                position: "top-right",
-                autoClose: 3000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
-        }
-    }
-    const handleUpdate3 = async () => {
-        let updateData = { oemail: userdetail.email, name: userdetail.name, phone: userdetail.phone, email, password: userdetail.password }
-
-        let data = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/updateuser`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-
-            },
-            body: JSON.stringify({ updateData: updateData })
-        });
-
-        let res = await data.json()
-
-        if (res.success == true) {
-            setEdit3(false)
-            setEmail(res.email)
-            localStorage.clear()
-            router.push('/')
-            toast.success('Your email is updated successfully', {
-                position: "top-right",
-                autoClose: 3000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
-        } else {
-            toast.error('Some error occured, Try again!', {
-                position: "top-right",
-                autoClose: 3000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
-        }
-    }
-    const handleUpdate4 = async () => {
-        let updateData = { oemail: userdetail.email, name: userdetail.name, phone: userdetail.phone, email: userdetail.email, password }
-
-        let data = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/updateuser`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-
-            },
-            body: JSON.stringify({ updateData: updateData })
-        });
-
-        let res = await data.json()
-
-        if (res.success == true) {
-            setEdit4(false)
-            setPasswordLen(password.length)
-            user.value = null
-            toast.success('Your password is updated successfully', {
-                position: "top-right",
-                autoClose: 3000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
-        } else {
-            toast.error('Some error occured, Try again!', {
-                position: "top-right",
-                autoClose: 3000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
-        }
-    }
-
-    return (
-        <div className='mb-28'>
-            <ToastContainer
-                position="top-right"
-                autoClose={4000}
-                hideProgressBar={false}
-                newestOnTop={false}
-                closeOnClick
-                rtl={false}
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
-            />
-            <h1 className='text-4xl font-bold lg:ml-24 pt-32 ml-5'>My Account</h1>
-            <div className='lg:flex lg:flex-row gap-48'>
-                <div className="h-full p-3 lg:space-y-2 lg:w-60 lg:ml-24 lg:mt-20 mt-10 mb-16 w-full">
-                    {/* <div className="flex items-center p-2 space-x-4">
+  return (
+    <div className="mb-28">
+      <ToastContainer
+        position="top-right"
+        autoClose={4000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
+      <h1 className="text-4xl font-bold lg:ml-24 pt-32 ml-5">My Account</h1>
+      <div className="lg:flex lg:flex-row gap-48">
+        <div className="h-full p-3 lg:space-y-2 lg:w-60 lg:ml-24 lg:mt-20 mt-10 mb-16 w-full">
+          {/* <div className="flex items-center p-2 space-x-4">
                     <img src="https://source.unsplash.com/100x100/?portrait" alt="" className="w-12 h-12 rounded-full " />
                     <div>
                         <h2 className="text-lg font-semibold">Leroy Jenkins</h2>
@@ -298,7 +319,7 @@ const Myaccount = ({ logout, userdetail, user, token }) => {
                                 <span>Chat</span>
                             </a>
                         </li> */}
-                    {/* <li>
+          {/* <li>
                             <a rel="noopener noreferrer" href="#" className="flex items-center p-2 space-x-3 rounded-md">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" className="w-5 h-5 fill-current ">
                                     <path d="M203.247,386.414,208,381.185V355.4L130.125,191H93.875L16,355.4v27.042l4.234,4.595a124.347,124.347,0,0,0,91.224,39.982h.42A124.343,124.343,0,0,0,203.247,386.414ZM176,368.608a90.924,90.924,0,0,1-64.231,26.413h-.33A90.907,90.907,0,0,1,48,369.667V362.6l64-135.112L176,362.6Z"></path>
@@ -308,7 +329,7 @@ const Myaccount = ({ logout, userdetail, user, token }) => {
                                 <span>Orders</span>
                             </a>
                         </li> */}
-                    {/* <li>
+          {/* <li>
                             <a rel="noopener noreferrer" href="#" className="flex items-center p-2 space-x-3 rounded-md">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" className="w-5 h-5 fill-current ">
                                     <path d="M453.122,79.012a128,128,0,0,0-181.087.068l-15.511,15.7L241.142,79.114l-.1-.1a128,128,0,0,0-181.02,0l-6.91,6.91a128,128,0,0,0,0,181.019L235.485,449.314l20.595,21.578.491-.492.533.533L276.4,450.574,460.032,266.94a128.147,128.147,0,0,0,0-181.019ZM437.4,244.313,256.571,425.146,75.738,244.313a96,96,0,0,1,0-135.764l6.911-6.91a96,96,0,0,1,135.713-.051l38.093,38.787,38.274-38.736a96,96,0,0,1,135.765,0l6.91,6.909A96.11,96.11,0,0,1,437.4,244.313Z"></path>
@@ -316,7 +337,7 @@ const Myaccount = ({ logout, userdetail, user, token }) => {
                                 <span>Wishlist</span>
                             </a>
                         </li> */}
-                    {/* <li>
+          {/* <li>
                             <a rel="noopener noreferrer" href="#" className="flex items-center p-2 space-x-3 rounded-md">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" className="w-5 h-5 fill-current ">
                                     <path d="M440,424V88H352V13.005L88,58.522V424H16v32h86.9L352,490.358V120h56V456h88V424ZM320,453.642,120,426.056V85.478L320,51Z"></path>
@@ -325,8 +346,8 @@ const Myaccount = ({ logout, userdetail, user, token }) => {
                                 <span>Logout</span>
                             </a>
                         </li> */}
-                    {/* </ul> */}
-                    {/* <ul className="pt-4 pb-2 space-y-1 text-sm">
+          {/* </ul> */}
+          {/* <ul className="pt-4 pb-2 space-y-1 text-sm">
                         <li>
                             <a rel="noopener noreferrer" href="#" className="flex items-center p-2 space-x-3 rounded-md">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" className="w-5 h-5 fill-current ">
@@ -338,148 +359,271 @@ const Myaccount = ({ logout, userdetail, user, token }) => {
                         </li>
                         
                     </ul> */}
-                    {/* </div>  */}
+          {/* </div>  */}
 
-                    <nav aria-label="Main Nav" className="flex flex-col bg-gray-100">
+          <nav aria-label="Main Nav" className="flex flex-col bg-gray-100">
+            <button
+              className={`flex items-center gap-2 border-l-[3px] ${
+                active == "dashboard"
+                  ? "border-blue-500 bg-blue-50 px-4 py-3 text-blue-700"
+                  : "border-transparent px-4 py-3 text-gray-500 hover:border-gray-100 hover:bg-gray-50 hover:text-gray-700"
+              }`}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 512 512"
+                className="w-5 h-5 fill-current dark:text-gray-400"
+              >
+                <path d="M68.983,382.642l171.35,98.928a32.082,32.082,0,0,0,32,0l171.352-98.929a32.093,32.093,0,0,0,16-27.713V157.071a32.092,32.092,0,0,0-16-27.713L272.334,30.429a32.086,32.086,0,0,0-32,0L68.983,129.358a32.09,32.09,0,0,0-16,27.713V354.929A32.09,32.09,0,0,0,68.983,382.642ZM272.333,67.38l155.351,89.691V334.449L272.333,246.642ZM256.282,274.327l157.155,88.828-157.1,90.7L99.179,363.125ZM84.983,157.071,240.333,67.38v179.2L84.983,334.39Z"></path>
+              </svg>
+
+              <span className="text-sm font-medium"> Dashboard </span>
+            </button>
+
+            <button
+              onClick={handleOrdersClick}
+              className={`flex items-center gap-2 border-l-[3px] ${
+                active == "orders"
+                  ? "border-blue-500 bg-blue-50 px-4 py-3 text-blue-700"
+                  : "border-transparent px-4 py-3 text-gray-500 hover:border-gray-100 hover:bg-gray-50 hover:text-gray-700"
+              }`}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 512 512"
+                className="w-5 h-5 fill-current "
+              >
+                <path d="M203.247,386.414,208,381.185V355.4L130.125,191H93.875L16,355.4v27.042l4.234,4.595a124.347,124.347,0,0,0,91.224,39.982h.42A124.343,124.343,0,0,0,203.247,386.414ZM176,368.608a90.924,90.924,0,0,1-64.231,26.413h-.33A90.907,90.907,0,0,1,48,369.667V362.6l64-135.112L176,362.6Z"></path>
+                <path d="M418.125,191h-36.25L304,355.4v27.042l4.234,4.595a124.347,124.347,0,0,0,91.224,39.982h.42a124.343,124.343,0,0,0,91.369-40.607L496,381.185V355.4ZM464,368.608a90.924,90.924,0,0,1-64.231,26.413h-.33A90.907,90.907,0,0,1,336,369.667V362.6l64-135.112L464,362.6Z"></path>
+                <path d="M272,196.659A56.223,56.223,0,0,0,309.659,159H416V127H309.659a55.991,55.991,0,0,0-107.318,0H96v32H202.341A56.223,56.223,0,0,0,240,196.659V463H136v32H376V463H272ZM232,143a24,24,0,1,1,24,24A24,24,0,0,1,232,143Z"></path>
+              </svg>
+
+              <span className="text-sm font-medium"> Orders </span>
+            </button>
+
+            <button
+              onClick={handleLogout}
+              className={`flex items-center gap-2 border-l-[3px] ${
+                active == "logout"
+                  ? "border-blue-500 bg-blue-50 px-4 py-3 text-blue-700"
+                  : "border-transparent px-4 py-3 text-gray-500 hover:border-gray-100 hover:bg-gray-50 hover:text-gray-700"
+              }`}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 512 512"
+                className="w-5 h-5 fill-current "
+              >
+                <path d="M440,424V88H352V13.005L88,58.522V424H16v32h86.9L352,490.358V120h56V456h88V424ZM320,453.642,120,426.056V85.478L320,51Z"></path>
+                <rect width="32" height="64" x="256" y="232"></rect>
+              </svg>
+
+              <span className="text-sm font-medium"> Logout </span>
+            </button>
+          </nav>
+        </div>
+        <div className="overflow-hidden bg-white shadow sm:rounded-lg lg:w-2/4 mt-10 lg:mt-24 mb-32 mx-5 lg:mx-0">
+          <div className="px-4 py-5 sm:px-6">
+            <h3 className="text-lg font-medium leading-6 text-gray-900">
+              User Details
+            </h3>
+            <p className="mt-1 max-w-2xl text-sm text-gray-500">
+              You can update your name, email, contact number and password here.
+            </p>
+          </div>
+          <div className="border-t border-gray-200">
+            <dl>
+              <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                <dt className="text-sm font-medium text-gray-500">Full name</dt>
+                <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
+                  <ul role="list">
+                    <li className="md:flex items-center justify-between pr-4 text-sm">
+                      <div className="flex w-full md:w-0 flex-1 items-center">
+                        <span hidden={edit1 ? true : false}>{name}</span>
+                        <input
+                          hidden={edit1 ? false : true}
+                          onChange={handleChange}
+                          value={name}
+                          name="name"
+                          type="text"
+                          className="px-2 focus:outline-none focus:ring-2 focus:ring-gray-500 border-b border-gray-500 leading-4 text-base placeholder-gray-600 py-2 w-72"
+                          placeholder="Enter your name here"
+                        />
+                      </div>
+                      <div className="ml-0 md:ml-4 flex-shrink-0 mt-4 md:mt-0">
                         <button
-                            className={`flex items-center gap-2 border-l-[3px] ${active == "dashboard" ? "border-blue-500 bg-blue-50 px-4 py-3 text-blue-700" : "border-transparent px-4 py-3 text-gray-500 hover:border-gray-100 hover:bg-gray-50 hover:text-gray-700"}`}
+                          hidden={edit1 ? true : false}
+                          onClick={() => {
+                            setEdit1(true);
+                          }}
+                          className=" font-medium text-blue-600 hover:text-blue-500"
                         >
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" className="w-5 h-5 fill-current dark:text-gray-400">
-                                <path d="M68.983,382.642l171.35,98.928a32.082,32.082,0,0,0,32,0l171.352-98.929a32.093,32.093,0,0,0,16-27.713V157.071a32.092,32.092,0,0,0-16-27.713L272.334,30.429a32.086,32.086,0,0,0-32,0L68.983,129.358a32.09,32.09,0,0,0-16,27.713V354.929A32.09,32.09,0,0,0,68.983,382.642ZM272.333,67.38l155.351,89.691V334.449L272.333,246.642ZM256.282,274.327l157.155,88.828-157.1,90.7L99.179,363.125ZM84.983,157.071,240.333,67.38v179.2L84.983,334.39Z"></path>
-                            </svg>
-
-                            <span className="text-sm font-medium"> Dashboard </span>
+                          Edit
                         </button>
-
-                        <button onClick={handleOrdersClick} className={`flex items-center gap-2 border-l-[3px] ${active == "orders" ? "border-blue-500 bg-blue-50 px-4 py-3 text-blue-700" : "border-transparent px-4 py-3 text-gray-500 hover:border-gray-100 hover:bg-gray-50 hover:text-gray-700"}`}>
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" className="w-5 h-5 fill-current ">
-                                    <path d="M203.247,386.414,208,381.185V355.4L130.125,191H93.875L16,355.4v27.042l4.234,4.595a124.347,124.347,0,0,0,91.224,39.982h.42A124.343,124.343,0,0,0,203.247,386.414ZM176,368.608a90.924,90.924,0,0,1-64.231,26.413h-.33A90.907,90.907,0,0,1,48,369.667V362.6l64-135.112L176,362.6Z"></path>
-                                    <path d="M418.125,191h-36.25L304,355.4v27.042l4.234,4.595a124.347,124.347,0,0,0,91.224,39.982h.42a124.343,124.343,0,0,0,91.369-40.607L496,381.185V355.4ZM464,368.608a90.924,90.924,0,0,1-64.231,26.413h-.33A90.907,90.907,0,0,1,336,369.667V362.6l64-135.112L464,362.6Z"></path>
-                                    <path d="M272,196.659A56.223,56.223,0,0,0,309.659,159H416V127H309.659a55.991,55.991,0,0,0-107.318,0H96v32H202.341A56.223,56.223,0,0,0,240,196.659V463H136v32H376V463H272ZM232,143a24,24,0,1,1,24,24A24,24,0,0,1,232,143Z"></path>
-                                </svg>
-
-                                <span className="text-sm font-medium"> Orders </span>
-                        </button>
-
-                        <button onClick={handleLogout}
-                            className={`flex items-center gap-2 border-l-[3px] ${active == "logout" ? "border-blue-500 bg-blue-50 px-4 py-3 text-blue-700" : "border-transparent px-4 py-3 text-gray-500 hover:border-gray-100 hover:bg-gray-50 hover:text-gray-700"}`}
+                        <button
+                          hidden={edit1 ? false : true}
+                          onClick={handleCancel1}
+                          className="mr-8 font-medium text-blue-600 hover:text-blue-500"
                         >
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" className="w-5 h-5 fill-current ">
-                                <path d="M440,424V88H352V13.005L88,58.522V424H16v32h86.9L352,490.358V120h56V456h88V424ZM320,453.642,120,426.056V85.478L320,51Z"></path>
-                                <rect width="32" height="64" x="256" y="232"></rect>
-                            </svg>
-
-                            <span className="text-sm font-medium"> Logout </span>
+                          Cancel
                         </button>
-                    </nav>
-
-
-                </div>
-                <div className="overflow-hidden bg-white shadow sm:rounded-lg lg:w-2/4 mt-10 lg:mt-24 mb-32 mx-5 lg:mx-0">
-
-                    <div className="px-4 py-5 sm:px-6">
-                        <h3 className="text-lg font-medium leading-6 text-gray-900">User Details</h3>
-                        <p className="mt-1 max-w-2xl text-sm text-gray-500">You can update your name, email, contact number and password here.</p>
-                    </div>
-                    <div className="border-t border-gray-200">
-                        <dl>
-                            <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                <dt className="text-sm font-medium text-gray-500">Full name</dt>
-                                <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
-                                    <ul role="list">
-                                        <li className="md:flex items-center justify-between pr-4 text-sm">
-                                            <div className="flex w-full md:w-0 flex-1 items-center">
-                                                <span hidden={edit1 ? true : false} >{name}</span>
-                                                <input hidden={edit1 ? false : true} onChange={handleChange} value={name} name='name' type="text" className='px-2 focus:outline-none focus:ring-2 focus:ring-gray-500 border-b border-gray-500 leading-4 text-base placeholder-gray-600 py-2 w-72' placeholder='Enter your name here' />
-                                            </div>
-                                            <div className="ml-0 md:ml-4 flex-shrink-0 mt-4 md:mt-0">
-                                                <button hidden={edit1 ? true : false} onClick={() => { setEdit1(true) }} className=" font-medium text-blue-600 hover:text-blue-500">
-                                                    Edit
-                                                </button>
-                                                <button hidden={edit1 ? false : true} onClick={handleCancel1} className="mr-8 font-medium text-blue-600 hover:text-blue-500">
-                                                    Cancel
-                                                </button>
-                                                <button hidden={edit1 ? false : true} onClick={handleUpdate1} className=" font-medium text-blue-600 hover:text-blue-500">
-                                                    Update
-                                                </button>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </dd>
-                            </div>
-                            <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                <dt className="text-sm font-medium text-gray-500">Contact Number</dt>
-                                <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
-                                    <ul role="list">
-                                        <li className="md:flex items-center justify-between pr-4 text-sm">
-                                            <div className="flex w-full md:w-0 flex-1 items-center">
-                                                <span hidden={edit2 ? true : false} >{phone}</span>
-                                                <input hidden={edit2 ? false : true} onChange={handleChange} value={phone} name='phone' type="number" className='px-2 focus:outline-none focus:ring-2 focus:ring-gray-500 border-b border-gray-500 leading-4 text-base placeholder-gray-600 py-2 w-72' placeholder='Enter your contact number here' />
-                                            </div>
-                                            <div className="ml-0 md:ml-4 flex-shrink-0 mt-4 md:mt-0">
-                                                <button hidden={edit2 ? true : false} onClick={() => { setEdit2(true) }} className=" font-medium text-blue-600 hover:text-blue-500">
-                                                    Edit
-                                                </button>
-                                                <button hidden={edit2 ? false : true} onClick={handleCancel2} className="mr-8 font-medium text-blue-600 hover:text-blue-500">
-                                                    Cancel
-                                                </button>
-                                                <button hidden={edit2 ? false : true} onClick={handleUpdate2} className=" font-medium text-blue-600 hover:text-blue-500">
-                                                    Update
-                                                </button>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </dd>
-                            </div>
-                            <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                <dt className="text-sm font-medium text-gray-500">Email address</dt>
-                                <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
-                                    <ul role="list">
-                                        <li className="md:flex items-center justify-between pr-4 text-sm">
-                                            <div className="flex w-full md:w-0 flex-1 items-center">
-                                                <span hidden={edit3 ? true : false} >{email}</span>
-                                                <input hidden={edit3 ? false : true} onChange={handleChange} value={email} name='email' type="email" className='px-2 focus:outline-none focus:ring-2 focus:ring-gray-500 border-b border-gray-500 leading-4 text-base placeholder-gray-600 py-2 w-72' placeholder='Enter your email here' />
-                                            </div>
-                                            <div className="ml-0 md:ml-4 flex-shrink-0 mt-4 md:mt-0">
-                                                <button hidden={edit3 ? true : false} onClick={() => { setEdit3(true) }} className=" font-medium text-blue-600 hover:text-blue-500">
-                                                    Edit
-                                                </button>
-                                                <button hidden={edit3 ? false : true} onClick={handleCancel3} className="mr-8 font-medium text-blue-600 hover:text-blue-500">
-                                                    Cancel
-                                                </button>
-                                                <button hidden={edit3 ? false : true} onClick={handleUpdate3} className=" font-medium text-blue-600 hover:text-blue-500">
-                                                    Update
-                                                </button>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </dd>
-                            </div>
-                            <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                <dt className="text-sm font-medium text-gray-500">Password</dt>
-                                <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
-                                    <ul role="list">
-                                        <li className="md:flex items-center justify-between pr-4 text-sm">
-                                            <div className="flex w-full md:w-0 flex-1 items-center">
-                                                <span hidden={edit4 ? true : false} >{'*'.repeat(passwordlen)}</span>
-                                                <input hidden={edit4 ? false : true} onChange={handleChange} value={password} name='password' type="password" className='px-2 focus:outline-none focus:ring-2 focus:ring-gray-500 border-b border-gray-500 leading-4 text-base placeholder-gray-600 py-2 w-72' placeholder='Enter your password here' />
-                                            </div>
-                                            <div className="ml-0 md:ml-4 flex-shrink-0 mt-4 md:mt-0">
-                                                <button hidden={edit4 ? true : false} onClick={() => { setEdit4(true) }} className=" font-medium text-blue-600 hover:text-blue-500">
-                                                    Edit
-                                                </button>
-                                                <button hidden={edit4 ? false : true} onClick={handleCancel4} className="mr-8 font-medium text-blue-600 hover:text-blue-500">
-                                                    Cancel
-                                                </button>
-                                                <button hidden={edit4 ? false : true} onClick={handleUpdate4} className=" font-medium text-blue-600 hover:text-blue-500">
-                                                    Update
-                                                </button>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </dd>
-                            </div>
-                            {/* <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                        <button
+                          hidden={edit1 ? false : true}
+                          onClick={handleUpdate1}
+                          className=" font-medium text-blue-600 hover:text-blue-500"
+                        >
+                          Update
+                        </button>
+                      </div>
+                    </li>
+                  </ul>
+                </dd>
+              </div>
+              <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                <dt className="text-sm font-medium text-gray-500">
+                  Contact Number
+                </dt>
+                <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
+                  <ul role="list">
+                    <li className="md:flex items-center justify-between pr-4 text-sm">
+                      <div className="flex w-full md:w-0 flex-1 items-center">
+                        <span hidden={edit2 ? true : false}>{phone}</span>
+                        <input
+                          hidden={edit2 ? false : true}
+                          onChange={handleChange}
+                          value={phone}
+                          name="phone"
+                          type="number"
+                          className="px-2 focus:outline-none focus:ring-2 focus:ring-gray-500 border-b border-gray-500 leading-4 text-base placeholder-gray-600 py-2 w-72"
+                          placeholder="Enter your contact number here"
+                        />
+                      </div>
+                      <div className="ml-0 md:ml-4 flex-shrink-0 mt-4 md:mt-0">
+                        <button
+                          hidden={edit2 ? true : false}
+                          onClick={() => {
+                            setEdit2(true);
+                          }}
+                          className=" font-medium text-blue-600 hover:text-blue-500"
+                        >
+                          Edit
+                        </button>
+                        <button
+                          hidden={edit2 ? false : true}
+                          onClick={handleCancel2}
+                          className="mr-8 font-medium text-blue-600 hover:text-blue-500"
+                        >
+                          Cancel
+                        </button>
+                        <button
+                          hidden={edit2 ? false : true}
+                          onClick={handleUpdate2}
+                          className=" font-medium text-blue-600 hover:text-blue-500"
+                        >
+                          Update
+                        </button>
+                      </div>
+                    </li>
+                  </ul>
+                </dd>
+              </div>
+              <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                <dt className="text-sm font-medium text-gray-500">
+                  Email address
+                </dt>
+                <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
+                  <ul role="list">
+                    <li className="md:flex items-center justify-between pr-4 text-sm">
+                      <div className="flex w-full md:w-0 flex-1 items-center">
+                        <span hidden={edit3 ? true : false}>{email}</span>
+                        <input
+                          hidden={edit3 ? false : true}
+                          onChange={handleChange}
+                          value={email}
+                          name="email"
+                          type="email"
+                          className="px-2 focus:outline-none focus:ring-2 focus:ring-gray-500 border-b border-gray-500 leading-4 text-base placeholder-gray-600 py-2 w-72"
+                          placeholder="Enter your email here"
+                        />
+                      </div>
+                      <div className="ml-0 md:ml-4 flex-shrink-0 mt-4 md:mt-0">
+                        <button
+                          hidden={edit3 ? true : false}
+                          onClick={() => {
+                            setEdit3(true);
+                          }}
+                          className=" font-medium text-blue-600 hover:text-blue-500"
+                        >
+                          Edit
+                        </button>
+                        <button
+                          hidden={edit3 ? false : true}
+                          onClick={handleCancel3}
+                          className="mr-8 font-medium text-blue-600 hover:text-blue-500"
+                        >
+                          Cancel
+                        </button>
+                        <button
+                          hidden={edit3 ? false : true}
+                          onClick={handleUpdate3}
+                          className=" font-medium text-blue-600 hover:text-blue-500"
+                        >
+                          Update
+                        </button>
+                      </div>
+                    </li>
+                  </ul>
+                </dd>
+              </div>
+              <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                <dt className="text-sm font-medium text-gray-500">Password</dt>
+                <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
+                  <ul role="list">
+                    <li className="md:flex items-center justify-between pr-4 text-sm">
+                      <div className="flex w-full md:w-0 flex-1 items-center">
+                        <span hidden={edit4 ? true : false}>
+                          {"*".repeat(passwordlen)}
+                        </span>
+                        <input
+                          hidden={edit4 ? false : true}
+                          onChange={handleChange}
+                          value={password}
+                          name="password"
+                          type="password"
+                          className="px-2 focus:outline-none focus:ring-2 focus:ring-gray-500 border-b border-gray-500 leading-4 text-base placeholder-gray-600 py-2 w-72"
+                          placeholder="Enter your password here"
+                        />
+                      </div>
+                      <div className="ml-0 md:ml-4 flex-shrink-0 mt-4 md:mt-0">
+                        <button
+                          hidden={edit4 ? true : false}
+                          onClick={() => {
+                            setEdit4(true);
+                          }}
+                          className=" font-medium text-blue-600 hover:text-blue-500"
+                        >
+                          Edit
+                        </button>
+                        <button
+                          hidden={edit4 ? false : true}
+                          onClick={handleCancel4}
+                          className="mr-8 font-medium text-blue-600 hover:text-blue-500"
+                        >
+                          Cancel
+                        </button>
+                        <button
+                          hidden={edit4 ? false : true}
+                          onClick={handleUpdate4}
+                          className=" font-medium text-blue-600 hover:text-blue-500"
+                        >
+                          Update
+                        </button>
+                      </div>
+                    </li>
+                  </ul>
+                </dd>
+              </div>
+              {/* <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                 <dt className="text-sm font-medium text-gray-500">Salary expectation</dt>
                 <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">$120,000</dd>
               </div>
@@ -491,7 +635,7 @@ const Myaccount = ({ logout, userdetail, user, token }) => {
                   pariatur mollit ad adipisicing reprehenderit deserunt qui eu.
                 </dd>
               </div> */}
-                            {/* <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+              {/* <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                 <dt className="text-sm font-medium text-gray-500">Attachments</dt>
                 <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
                   <ul role="list" className="divide-y divide-gray-200 rounded-md border border-gray-200">
@@ -520,34 +664,33 @@ const Myaccount = ({ logout, userdetail, user, token }) => {
                   </ul>
                 </dd>
               </div> */}
-                        </dl>
-                    </div>
-                </div>
-            </div>
+            </dl>
+          </div>
         </div>
-    )
-}
+      </div>
+    </div>
+  );
+};
 
 export async function getServerSideProps(context) {
-    if (!mongoose.connections[0].readyState) {
-        await mongoose.connect(process.env.MONGO_URI)
-    }
+  if (!mongoose.connections[0].readyState) {
+    await mongoose.connect(process.env.MONGO_URI);
+  }
 
-    let usertoken = context.query.usertoken
+  let usertoken = context.query.usertoken;
 
-    let data = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/authuser`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
+  let data = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/authuser`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ token: usertoken }),
+  });
 
-        },
-        body: JSON.stringify({ token: usertoken })
-    });
-
-    let res = await data.json()
-    return {
-        props: { userdetail: res, token: usertoken }, // will be passed to the page component as props
-    }
+  let res = await data.json();
+  return {
+    props: { userdetail: res, token: usertoken }, // will be passed to the page component as props
+  };
 }
 
-export default Myaccount
+export default Myaccount;

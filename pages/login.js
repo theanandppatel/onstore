@@ -15,11 +15,23 @@ const Login = () => {
     const [passwordicon, setPasswordicon] = useState("true")
     const [user, setUser] = useState()
     const router = useRouter()
+    const { redirect } = router.query;
 
     useEffect(() => {
         if (localStorage.getItem('myuser')) {
             router.push('/')
         }
+        if (redirect) {
+            toast.error(redirect, {
+              position: "top-right",
+              autoClose: 3000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+            });
+          }
         const script = document.createElement("script");
         script.src = "https://accounts.google.com/gsi/client";
         script.async = true;
@@ -218,9 +230,6 @@ const Login = () => {
         //         });
         //     }
         // }
-    }
-
-    const handleCallbackRespones = () => {
     }
 
     const handlePassShow = () => {

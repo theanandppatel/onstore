@@ -13,7 +13,7 @@ const handler=async (req, res)=> {
             let originalPass = bytes.toString(CryptoJS.enc.Utf8);
             
             if(req.body.email == user.email && req.body.password==originalPass){
-                let token = jwt.sign({success:true,email:user.email,password:user.password }, process.env.JWT_SECRET,{expiresIn:"45min"});
+                let token = jwt.sign({success:true,email:user.email,password:user.password }, process.env.JWT_SECRET,{expiresIn: '45min'});
                 res.status(200).json({success:true,token,email:user.email})
             }else{
                 res.status(400).json({success:false})
