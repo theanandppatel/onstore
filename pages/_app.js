@@ -66,14 +66,18 @@ function MyApp({ Component, pageProps }) {
       setKey(Math.random());
       setUserEmail(JSON.parse(localStorage.getItem("myuser")).email);
     }
-  }, []);
+  }, [router]);
 
   const logout = () => {
     localStorage.clear();
     setUser({ value: null });
     setUserEmail("");
     setKey(Math.random());
+    setTimeout(() => {
+      router.push('/')
+    }, 3000);
   };
+
   const saveCart = (myCart) => {
     localStorage.setItem("cart", JSON.stringify(myCart));
 

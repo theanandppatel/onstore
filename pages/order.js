@@ -1,20 +1,40 @@
-import React from 'react'
-import Order from '../models/Order'
-import mongoose from "mongoose"
-import { useRouter } from 'next/router'
+import React, { useEffect } from "react";
+import Order from "../models/Order";
+import mongoose from "mongoose";
+import { useRouter } from "next/router";
 
-const MyOrder = ({ cart, subTotal, order }) => {
-
+const MyOrder = ({ cart, subTotal, order, user }) => {
   // const address!= order.deliveryinfo.replace(/\\n/g, '\n')
+
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!localStorage.getItem("myuser")) {
+      router.push("/");
+    }
+  }, [user, router]);
+
   const addressLines = order.deliveryinfo.split("\n");
 
-  const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
-    "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  const monthNames = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
 
   const dateFormat = (d) => {
     var t = new Date(d);
-    return t.getDate() + '-' + monthNames[t.getMonth()] + '-' + t.getFullYear();
-  }
+    return t.getDate() + "-" + monthNames[t.getMonth()] + "-" + t.getFullYear();
+  };
   return (
     // <div>
     //   <section className="text-gray-600 body-font overflow-hidden">
@@ -47,7 +67,6 @@ const MyOrder = ({ cart, subTotal, order }) => {
     //             </div>
     //           })}
 
-
     //           <div className="mt-10" >
     //           <div className="title-font font-medium text-xl text-gray-900">Delivery Charge:
     //           {order.bcharge < 1000 && order.bcharge != 0 ? " ₹40" : " FREE"}</div>
@@ -64,12 +83,18 @@ const MyOrder = ({ cart, subTotal, order }) => {
     <>
       {/* This example requires Tailwind CSS v2.0+ */}
 
-      <div className='px-3 sm:px-5 lg:px-72 pt-28'>
+      <div className="px-3 sm:px-5 lg:px-72 pt-28">
         <div className="max-w-xl">
-          <h1 className="text-sm font-semibold uppercase tracking-wide text-blue-600">Thank you!</h1>
-          <p className="mt-2 text-4xl font-extrabold tracking-tight sm:text-5xl">It&apos;s on the way!</p>
+          <h1 className="text-sm font-semibold uppercase tracking-wide text-blue-600">
+            Thank you!
+          </h1>
+          <p className="mt-2 text-4xl font-extrabold tracking-tight sm:text-5xl">
+            It&apos;s on the way!
+          </p>
           {/* <p className="mt-2 text-4xl font-extrabold tracking-tight sm:text-5xl">Order #{order.orderId}</p> */}
-          <p className="mt-2 text-base text-gray-500">Your order has shipped and will be with you soon.</p>
+          <p className="mt-2 text-base text-gray-500">
+            Your order has shipped and will be with you soon.
+          </p>
           <dl className="mt-12 text-sm font-medium flex gap-10">
             <span>
               <dt className="text-gray-900">Order Number</dt>
@@ -88,7 +113,6 @@ const MyOrder = ({ cart, subTotal, order }) => {
               </dd>
             </span>
           </dl>
-
         </div>
         <div className="mt-10 border-t border-gray-200">
           <h2 className="sr-only">Your order</h2>
@@ -100,35 +124,58 @@ const MyOrder = ({ cart, subTotal, order }) => {
 
           {Object.keys(order.products).map((item) => {
             return (
-              <div key={item} className="py-10 border-b border-gray-200 flex space-x-6">
-                <img src={order.products[item].image} alt="" className="flex-none w-20 h-20 object-contain bg-gray-100 rounded-lg sm:w-40 sm:h-40" />
+              <div
+                key={item}
+                className="py-10 border-b border-gray-200 flex space-x-6"
+              >
+                <img
+                  src={order.products[item].image}
+                  alt=""
+                  className="flex-none w-20 h-20 object-contain bg-gray-100 rounded-lg sm:w-40 sm:h-40"
+                />
                 <div className="flex-auto flex flex-col">
                   <div>
                     <h4 className="font-medium text-xl text-gray-900">
                       <a href="#">{order.products[item].name}</a>
                     </h4>
-                    <div className='flex pt-3 space-x-3'>
-                    {order.products[item].size && <p className='text-gray-600'><span className='text-black'>Size:</span> {order.products[item].size}</p>}
-                    {order.products[item].variant && <p className='text-gray-600'><span className='text-black'>Color:</span> {order.products[item].variant}</p>}
+                    <div className="flex pt-3 space-x-3">
+                      {order.products[item].size && (
+                        <p className="text-gray-600">
+                          <span className="text-black">Size:</span>{" "}
+                          {order.products[item].size}
+                        </p>
+                      )}
+                      {order.products[item].variant && (
+                        <p className="text-gray-600">
+                          <span className="text-black">Color:</span>{" "}
+                          {order.products[item].variant}
+                        </p>
+                      )}
                     </div>
                   </div>
                   <div className="mt-6 flex-1 flex items-end">
                     <dl className="flex text-sm divide-x divide-gray-200 space-x-4 sm:space-x-6">
                       <div className="flex text-base">
                         <dt className="font-medium text-gray-900">Quantity</dt>
-                        <dd className="ml-2 text-gray-700">{order.products[item].qty}</dd>
+                        <dd className="ml-2 text-gray-700">
+                          {order.products[item].qty}
+                        </dd>
                       </div>
                       <div className="pl-4 flex sm:pl-6 text-base">
                         <dt className="font-medium text-gray-900">Price</dt>
                         <dd className="ml-2 text-gray-700">
-                          ₹{((order.products[item].price) * (order.products[item].qty)).toLocaleString('en-IN')}
+                          ₹
+                          {(
+                            order.products[item].price *
+                            order.products[item].qty
+                          ).toLocaleString("en-IN")}
                         </dd>
-
                       </div>
                     </dl>
                   </div>
                 </div>
-              </div>)
+              </div>
+            );
           })}
           {/* <% end %> */}
 
@@ -138,11 +185,13 @@ const MyOrder = ({ cart, subTotal, order }) => {
             <h4 className="sr-only">Addresses</h4>
             <dl className="grid grid-cols-2 text-sm py-10">
               <div>
-                <dt className="font-medium text-base text-gray-900">Shipping Address</dt>
+                <dt className="font-medium text-base text-gray-900">
+                  Shipping Address
+                </dt>
                 <dd className="mt-2 text-gray-700">
                   <address className="not-italic">
-                    <span className="block" >
-                      <ul className='text-base'>
+                    <span className="block">
+                      <ul className="text-base">
                         {addressLines.map((line, index) => (
                           <li key={index}>{line}</li>
                         ))}
@@ -152,11 +201,17 @@ const MyOrder = ({ cart, subTotal, order }) => {
                 </dd>
               </div>
               <div>
-                <dt className="font-medium text-base text-gray-900">Payment method</dt>
+                <dt className="font-medium text-base text-gray-900">
+                  Payment method
+                </dt>
                 <dd className="mt-2 text-gray-700">
                   {/* <!-- <p>Apple Pay</p> --> */}
-                  <p className='text-base'>{order.paymentMethod}</p>
-                  {order.paymentMethod != "Cash On Delivery(COD)" && <p className='text-base'>{order.paymentInfo.method.toUpperCase()}</p>}
+                  <p className="text-base">{order.paymentMethod}</p>
+                  {order.paymentMethod != "Cash On Delivery(COD)" && (
+                    <p className="text-base">
+                      {order.paymentInfo.method.toUpperCase()}
+                    </p>
+                  )}
                 </dd>
               </div>
               {/* <!-- <div> -->
@@ -171,49 +226,49 @@ const MyOrder = ({ cart, subTotal, order }) => {
       <!-- </div> --> */}
             </dl>
 
-
             <h3 className="sr-only">Summary</h3>
 
             <dl className="space-y-6 border-t border-gray-200 pt-10 mb-52">
               <div className="flex justify-between font-medium text-xl">
                 <dt className="font-medium text-gray-900">Subtotal</dt>
                 <dd className="text-gray-700">
-                  ₹{order.bcharge.toLocaleString('en-IN')}
+                  ₹{order.bcharge.toLocaleString("en-IN")}
                 </dd>
               </div>
               <div className="flex justify-between font-medium text-xl">
                 <dt className="font-medium text-gray-900">Shipping</dt>
                 <dd className="text-gray-900">
-                  {order.bcharge < 1000 && order.bcharge != 0 ? " ₹40" : " FREE"}
+                  {order.bcharge < 1000 && order.bcharge != 0
+                    ? " ₹40"
+                    : " FREE"}
                 </dd>
-
               </div>
               <div className="flex justify-between font-medium text-xl">
                 <dt className="font-medium text-gray-900">Total</dt>
                 <dd className="text-gray-900">
-                  ₹{order.amount.toLocaleString('en-IN')}
+                  ₹{order.amount.toLocaleString("en-IN")}
                 </dd>
-
               </div>
             </dl>
           </div>
         </div>
       </div>
     </>
-
-  )
-}
+  );
+};
 
 export async function getServerSideProps(context) {
-  if (!mongoose.connections[0].readyState) {
-    await mongoose.connect(process.env.MONGO_URI)
-  }
-  let order = await Order.findOne({ orderId: context.query.id })
 
+  
+  if (!mongoose.connections[0].readyState) {
+    await mongoose.connect(process.env.MONGO_URI);
+  }
+  
+  let order = await Order.findOne({ orderId: context.query.id });
 
   return {
     props: { order: JSON.parse(JSON.stringify(order)) }, // will be passed to the page component as props
-  }
+  };
 }
 
-export default MyOrder
+export default MyOrder;
