@@ -1,3 +1,5 @@
+import { Analytics } from '@vercel/analytics/react';
+// import { SpeedInsights } from '@vercel/speed-insights/next';
 import NavbarEle from "../components/Navbar";
 import Footer from "../components/Footer";
 import "../styles/globals.css";
@@ -5,7 +7,7 @@ import "../styles/index.css";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import LoadingBar from "react-top-loading-bar";
-import Script from 'next/script'
+
 function MyApp({ Component, pageProps }) {
   const [open, setOpen] = useState(false);
   const [cart, setCart] = useState({});
@@ -212,6 +214,8 @@ function MyApp({ Component, pageProps }) {
         {...pageProps}
       />
       <Footer />
+      <Analytics />
+      {/* <SpeedInsights/> */}
     </>
   );
 }
