@@ -16,6 +16,8 @@
     "@heroicons/react": "^2.0.17",
     "@material-tailwind/react": "^1.2.5",
     "@tailwindcss/line-clamp": "^0.4.2",
+    "@vercel/analytics": "^1.1.1",
+    "@vercel/speed-insights": "^1.0.2",
     "babel-plugin-macros": "^3.1.0",
     "bcrypt": "^5.0.1",
     "bcryptjs": "^2.4.3",
