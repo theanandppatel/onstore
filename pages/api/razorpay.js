@@ -33,14 +33,14 @@ const handler = async (req, res) => {
     });
 
     // Create an order -> generate the OrderID -> Send it to the Front-end
-    const payment_capture = 1;
+    const partial_payment = 1;
     const amount = req.body.fAmt;
     const currency = "INR";
     const options = {
       amount: (amount * 100).toString(),
       currency,
       receipt: shortid.generate(),
-      payment_capture
+      partial_payment
     };
 
     try {

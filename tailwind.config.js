@@ -1,5 +1,5 @@
-/** @type {import('tailwindcss').Config} */ 
-const defaultTheme = require('tailwindcss/defaultTheme')
+/** @type {import('tailwindcss').Config} */
+const defaultTheme = require("tailwindcss/defaultTheme");
 
 module.exports = {
   content: [
@@ -8,20 +8,34 @@ module.exports = {
   ],
   theme: {
     extend: {
-        colors: {
-            custom: {
-                DEFAULT: '#000000',
-                light: '#ffffff'
-            }
+      keyframes: {
+        fadeIn: {
+          "0%": { opacity: "0" },
+          "100%": { opacity: "1" },
         },
-        fontFamily: {
-          sans: ['Inter var', ...defaultTheme.fontFamily.sans],
+        fadeOut: {
+          "0%": { opacity: "1" },
+          "100%": { opacity: "0" },
         },
-  }
-},
+      },
+      animation: {
+        fadeIn: "fadeIn 0.7s ease-in-out",
+        fadeOut: "fadeOut 0.7s ease-in-out",
+      },
+      colors: {
+        custom: {
+          DEFAULT: "#000000",
+          light: "#ffffff",
+        },
+      },
+      fontFamily: {
+        sans: ["Inter var", ...defaultTheme.fontFamily.sans],
+      },
+    },
+  },
   plugins: [
-    require('@tailwindcss/line-clamp'),
+    require("@tailwindcss/line-clamp"),
     require("tw-elements/dist/plugin"),
-    require('tailwind-scrollbar')
+    require("tailwind-scrollbar"),
   ],
-}
+};

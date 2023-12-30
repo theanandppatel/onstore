@@ -238,6 +238,7 @@ const Checkout = ({ useremail, user, cart, addToCart, removeFromCart, totalQty, 
 
         // Make API call to the serverless API
         let data2 = { cart, fAmt, deliveryinfo, email, subTotal, orderId, paymentMethod }
+
         const data = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/razorpay`, {
             method: "POST",
             headers: {
@@ -248,6 +249,8 @@ const Checkout = ({ useremail, user, cart, addToCart, removeFromCart, totalQty, 
         }).then((t) =>
             t.json()
         );
+
+        
 
         if (data.success == false) {
             clearCart()
