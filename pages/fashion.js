@@ -6,7 +6,7 @@ import Product from '../models/Product';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 import Head from 'next/head';
 
-const Fashion = ({ fashionitems, addToCart, stockFlag }) => {
+const Fashion = ({ fashionitems, stockFlag }) => {
 
 
   return (
