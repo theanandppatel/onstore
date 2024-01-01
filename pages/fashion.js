@@ -189,11 +189,11 @@ const Fashion = ({ fashionitems, stockFlag }) => {
                         </div>
                       </div>  */}
 
-                      <div class="lg:flex py-1 md:py-4 text-sm text-gray-600">
+                      <div className="lg:flex py-1 md:py-4 text-sm text-gray-600">
                         {/* <!-- Color --> */}
-                        <div class="flex-1 md:inline-flex items-center mb-3">
-                          <div class="w-full flex-none text-sm flex items-center text-gray-600">
-                            <ul class="flex flex-row justify-center items-center space-x-2">
+                        <div className="flex-1 md:inline-flex items-center mb-3">
+                          <div className="w-full flex-none text-sm flex items-center text-gray-600">
+                            <ul className="flex flex-row justify-center items-center space-x-2">
                               {/* <!-- Color items --> */}
                               {generateColorOptions(
                                 fashionitems[item].color,
@@ -206,11 +206,11 @@ const Fashion = ({ fashionitems, stockFlag }) => {
                         </div>
 
                         {/* <!-- Size --> */}
-                        <div class="flex-1 lg:inline-flex items-center mb-0 md:mb-3 max-w-1 overflow-hidden">
-                          <span class="text-secondary whitespace-nowrap mr-3">
+                        <div className="flex-1 lg:inline-flex items-center mb-0 md:mb-3 max-w-1 overflow-hidden">
+                          <span className="text-secondary whitespace-nowrap mr-3">
                             Size:
                           </span>
-                          <div class="cursor-pointer text-black flex flex-wrap">
+                          <div className="cursor-pointer text-black flex flex-wrap">
                             {fashionitems[item].size
                               .sort((a, b) => b.localeCompare(a))
                               .map((k) => {
