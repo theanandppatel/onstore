@@ -206,7 +206,7 @@ const Fashion = ({ fashionitems, stockFlag }) => {
                         </div>
 
                         {/* <!-- Size --> */}
-                        <div className="flex-1 lg:inline-flex items-center mb-0 md:mb-3 max-w-1 overflow-hidden">
+                        <div className="flex-1 lg:inline-flex items-center mb-0 md:mb-3 max-w-full overflow-hidden">
                           <span className="text-secondary whitespace-nowrap mr-3">
                             Size:
                           </span>
