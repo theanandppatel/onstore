@@ -1,38 +1,39 @@
-import React, { useState,useEffect } from 'react'
-import mongoose from "mongoose"
-import Link from 'next/link'
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import { useRouter } from 'next/router'
+import React, { useState, useEffect } from "react";
+import Head from "next/head";
+import mongoose from "mongoose";
+import Link from "next/link";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useRouter } from "next/router";
 
-const Forgotpassword = ({tokenverify}) => {
-  const [password, setPassword] = useState('')
-  const [cpassword, setCPassword] = useState('')
-  const [valuecheck, setValueCheck] = useState(false)
-  const router = useRouter()
+const Forgotpassword = ({ tokenverify }) => {
+  const [password, setPassword] = useState("");
+  const [cpassword, setCPassword] = useState("");
+  const [valuecheck, setValueCheck] = useState(false);
+  const router = useRouter();
   const regex = /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
 
   useEffect(() => {
-    if(localStorage.getItem("myuser")){
-      router.push('/')
+    if (localStorage.getItem("myuser")) {
+      router.push("/");
     }
-    if(tokenverify.success!=true){
-        router.push('/')
+    if (tokenverify.success != true) {
+      router.push("/");
     }
-  }, [])
-  
+  }, []);
+
   const handleChange = (e) => {
-    if (e.target.name == 'password') {
-      setPassword(e.target.value)
+    if (e.target.name == "password") {
+      setPassword(e.target.value);
     }
-    if (e.target.name == 'cpassword') {
-        setCPassword(e.target.value)
-      }
-  }
+    if (e.target.name == "cpassword") {
+      setCPassword(e.target.value);
+    }
+  };
 
-  const inputValueCheck = (e) =>{
-    if(password!=cpassword){
-      toast.error('Password are not match', {
+  const inputValueCheck = (e) => {
+    if (password != cpassword) {
+      toast.error("Password are not match", {
         position: "top-center",
         autoClose: 4000,
         hideProgressBar: false,
@@ -41,9 +42,8 @@ const Forgotpassword = ({tokenverify}) => {
         draggable: true,
         progress: undefined,
       });
-    }
-    else if(!regex.test(password)){
-      toast.error('Please enter a strong password', {
+    } else if (!regex.test(password)) {
+      toast.error("Please enter a strong password", {
         position: "top-center",
         autoClose: 4000,
         hideProgressBar: false,
@@ -52,32 +52,37 @@ const Forgotpassword = ({tokenverify}) => {
         draggable: true,
         progress: undefined,
       });
+    } else {
+      setValueCheck(true);
     }
-    else{
-      setValueCheck(true)
-    }
-  }
+  };
   const handleSubmit = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
-    inputValueCheck()
+    inputValueCheck();
 
-    if(valuecheck){
-      let data = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/resetpassword`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-  
-        },
-        body: JSON.stringify({token:tokenverify.token, email: tokenverify.useremail,password:cpassword })
-      });
-  
-      let res = await data.json()
-  
+    if (valuecheck) {
+      let data = await fetch(
+        `${process.env.NEXT_PUBLIC_HOST}/api/resetpassword`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            token: tokenverify.token,
+            email: tokenverify.useremail,
+            password: cpassword,
+          }),
+        }
+      );
+
+      let res = await data.json();
+
       if (res.success == true) {
-        setPassword('')
-        setCPassword('')
-        router.push('/login')
+        setPassword("");
+        setCPassword("");
+        router.push("/login");
         toast.success(res.message, {
           position: "top-right",
           autoClose: 3000,
@@ -87,9 +92,9 @@ const Forgotpassword = ({tokenverify}) => {
           draggable: true,
           progress: undefined,
         });
-      }else{
-        setPassword('')
-        setCPassword('')
+      } else {
+        setPassword("");
+        setCPassword("");
         toast.error(res.message, {
           position: "top-right",
           autoClose: 3000,
@@ -101,10 +106,39 @@ const Forgotpassword = ({tokenverify}) => {
         });
       }
     }
-  }
+  };
 
   return (
     <div>
+      <Head>
+        <title>Reset your password - Onstore</title>
+        <meta
+          name="description"
+          content="Your all needs at one store. Onstore - An ecommerce platform"
+        />
+        <link
+          rel="apple-touch-icon"
+          sizes="180x180"
+          href="/apple-touch-icon.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="32x32"
+          href="/favicon-32x32.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="16x16"
+          href="/favicon-16x16.png"
+        />
+        <link rel="manifest" href="/site.webmanifest" />
+        <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
+        <meta name="msapplication-TileColor" content="#da532c" />
+        <meta name="theme-color" content="#ffffff" />
+      </Head>
+
       <ToastContainer
         position="top-right"
         autoClose={3000}
@@ -123,7 +157,10 @@ const Forgotpassword = ({tokenverify}) => {
               <h2 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl text-center mb-24">
                 Reset Your Password
               </h2>
-              <form className="mt-4 space-y-4 lg:mt-5 md:space-y-5" onSubmit={handleSubmit}>
+              <form
+                className="mt-4 space-y-4 lg:mt-5 md:space-y-5"
+                onSubmit={handleSubmit}
+              >
                 <div>
                   <label
                     htmlFor="password"
@@ -131,7 +168,11 @@ const Forgotpassword = ({tokenverify}) => {
                   >
                     New Password
                   </label>
-                  <input onChange={handleChange} type="password" value={password} name="password"
+                  <input
+                    onChange={handleChange}
+                    type="password"
+                    value={password}
+                    name="password"
                     id="password"
                     className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
                     required=""
@@ -142,7 +183,11 @@ const Forgotpassword = ({tokenverify}) => {
                   >
                     Confirm New Password
                   </label>
-                  <input onChange={handleChange} type="password" value={cpassword} name="cpassword"
+                  <input
+                    onChange={handleChange}
+                    type="password"
+                    value={cpassword}
+                    name="cpassword"
                     id="cpassword"
                     className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
                     required=""
@@ -157,38 +202,39 @@ const Forgotpassword = ({tokenverify}) => {
                 </button>
               </form>
               <p className="text-sm font-light text-gray-700 mt-3">
-                Return to login? <span className="font-medium text-primary-600 hover:underline"><Link href={'/login'} >Sign in</Link></span>
+                Return to login?{" "}
+                <span className="font-medium text-primary-600 hover:underline">
+                  <Link href={"/login"}>Sign in</Link>
+                </span>
               </p>
             </div>
           </div>
         </section>
-
       </div>
     </div>
-  )
-}
+  );
+};
 
 export async function getServerSideProps(context) {
-    if (!mongoose.connections[0].readyState) {
-      await mongoose.connect(process.env.MONGO_URI)
-    }
-  
-    let token = context.query.resettoken
-    let data = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/authtoken`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-  
-        },
-        body: JSON.stringify({ token: token })
-      });
-        
-      let res = await data.json()
-  
-    // let res = await data.json()
-    return {
-      props: { tokenverify:res }, // will be passed to the page component as props
-    }
+  if (!mongoose.connections[0].readyState) {
+    await mongoose.connect(process.env.MONGO_URI);
   }
 
-export default Forgotpassword
+  let token = context.query.resettoken;
+  let data = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/authtoken`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ token: token }),
+  });
+
+  let res = await data.json();
+
+  // let res = await data.json()
+  return {
+    props: { tokenverify: res }, // will be passed to the page component as props
+  };
+}
+
+export default Forgotpassword;

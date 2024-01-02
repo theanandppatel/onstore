@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Head from "next/head";
 import mongoose from "mongoose";
 import { useRouter } from "next/router";
 import { ToastContainer, toast } from "react-toastify";
@@ -23,11 +24,10 @@ const Myaccount = ({ logout, userdetail, user, token }) => {
 
   useEffect(() => {
     if (userdetail && userdetail.success !== true) {
-        localStorage.removeItem('myuser');
-        router.push(`/login?redirect=${userdetail.message}`);
+      localStorage.removeItem("myuser");
+      router.push(`/login?redirect=${userdetail.message}`);
     }
   }, [userdetail]); // Add 'userdetail' as a dependency to trigger the effect when it changes
-
 
   const handleLogout = () => {
     logout();
@@ -253,6 +253,35 @@ const Myaccount = ({ logout, userdetail, user, token }) => {
 
   return (
     <div className="mb-28">
+      <Head>
+        <title>My Account - Onstore</title>
+        <meta
+          name="description"
+          content="Your all needs at one store. Onstore - An ecommerce platform"
+        />
+        <link
+          rel="apple-touch-icon"
+          sizes="180x180"
+          href="/apple-touch-icon.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="32x32"
+          href="/favicon-32x32.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="16x16"
+          href="/favicon-16x16.png"
+        />
+        <link rel="manifest" href="/site.webmanifest" />
+        <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
+        <meta name="msapplication-TileColor" content="#da532c" />
+        <meta name="theme-color" content="#ffffff" />
+      </Head>
+
       <ToastContainer
         position="top-right"
         autoClose={4000}

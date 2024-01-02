@@ -18,7 +18,7 @@ const Home = ({ addToCart, featuredproducts, recommendedproducts }) => {
     <>
       <Head>
         <title>Home Page - Onstore</title>
-        <meta name="description" content="Your all needs at one adda" />
+        <meta name="description" content="Your all needs at one store. Onstore - An ecommerce platform" />
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />

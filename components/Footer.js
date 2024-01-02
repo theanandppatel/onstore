@@ -179,7 +179,12 @@ const Footer = () => {
                       <span className="sr-only" href={"https://facebook.com"}>
                         Facebook
                       </span>
-                      <Image src="/social-media-svg/facebook.svg" alt="Facebook Icon" width={24} height={24} />
+                      <Image
+                        src="/social-media-svg/facebook.svg"
+                        alt="Facebook Icon"
+                        width={24}
+                        height={24}
+                      />
                     </a>
                   </Link>
                 </li>
@@ -191,7 +196,12 @@ const Footer = () => {
                   >
                     <a className="text-rose-700 transition hover:text-rose-700/75">
                       <span className="sr-only">Instagram</span>
-                      <Image src="/social-media-svg/instagram.svg" alt="Instagram Icon" width={24} height={24} />
+                      <Image
+                        src="/social-media-svg/instagram.svg"
+                        alt="Instagram Icon"
+                        width={24}
+                        height={24}
+                      />
                     </a>
                   </Link>
                 </li>
@@ -203,15 +213,29 @@ const Footer = () => {
                   >
                     <a className="text-indigo-500 transition hover:text-indigo-500/75">
                       <span className="sr-only">𝕏</span>
-                      <Image src="/social-media-svg/x.svg" alt="X.com Icon" width={24} height={24} />
+                      <Image
+                        src="/social-media-svg/x.svg"
+                        alt="X.com Icon"
+                        width={24}
+                        height={24}
+                      />
                     </a>
                   </Link>
                 </li>
                 <li>
-                  <Link href={"https://github.com/theanandppatel/"} rel="noreferrer" target="_blank">
+                  <Link
+                    href={"https://github.com/theanandppatel/"}
+                    rel="noreferrer"
+                    target="_blank"
+                  >
                     <a className="text-slate-700 transition hover:text-slate-700/75">
                       <span className="sr-only">GitHub</span>
-                      <Image src="/social-media-svg/github.svg" alt="Github Icon" width={24} height={24} />
+                      <Image
+                        src="/social-media-svg/github.svg"
+                        alt="Github Icon"
+                        width={24}
+                        height={24}
+                      />
                     </a>
                   </Link>
                 </li>
@@ -230,7 +254,13 @@ const Footer = () => {
 
             <div className="mt-10 lg:pb-0 pb-10">
               <div className="flex flex-col items-center justify-between gap-3 text-sm text-neutral-700 md:flex-row">
-                <img className="h-12" src="../../images/logo-6.png" alt="" />
+                <Link href={"/"}>
+                  <img
+                    className="h-12 cursor-pointer"
+                    src="../../images/logo-6.png"
+                    alt="Onstore-logo"
+                  />
+                </Link>
                 <p>
                   Created By{" "}
                   <strong>

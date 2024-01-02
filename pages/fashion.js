@@ -38,7 +38,7 @@ const Fashion = ({ fashionitems, stockFlag }) => {
     <>
       <Head>
         <title>Fashion items - Onstore</title>
-        <meta name="description" content="Your all needs at one adda" />
+        <meta name="description" content="Your all needs at one store" />
         <link
           rel="apple-touch-icon"
           sizes="180x180"
@@ -210,7 +210,7 @@ const Fashion = ({ fashionitems, stockFlag }) => {
                           <span className="text-secondary whitespace-nowrap mr-3">
                             Size:
                           </span>
-                          <div className="cursor-pointer text-black flex flex-wrap">
+                          <div className="cursor-pointer text-black flex flex-wrap justify-center">
                             {fashionitems[item].size
                               .sort((a, b) => b.localeCompare(a))
                               .map((k) => {

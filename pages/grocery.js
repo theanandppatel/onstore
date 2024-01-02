@@ -1,4 +1,5 @@
 import React from 'react'
+import Head from 'next/head';
 import Link from 'next/link'
 import mongoose from "mongoose";
 import Product from '../models/Product';
@@ -6,6 +7,18 @@ import Product from '../models/Product';
 const Tshirt = ({ groceryitem }) => {
   return (
     <>
+    <Head>
+        <title>Grocery Items - Onstore</title>
+        <meta name="description" content="Your all needs at one store. Onstore - An ecommerce platform" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+        <link rel="manifest" href="/site.webmanifest" />
+        <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
+        <meta name="msapplication-TileColor" content="#da532c" />
+        <meta name="theme-color" content="#ffffff" />
+      </Head>
+
       {Object.keys(groceryitem).length == 0 ? <p className='text-gray-600 text-center pt-40 pb-40'>Sorry all the Grocery Products are currently out of stock. New stock coming soon. Stay Tuned!</p> :
         <div className='pt-32 pb-36 md:ml-14 items-center lg:gap-4 lg:grid-cols-4 grid grid-cols-2' style={{ textAlign: "-webkit-center" }}>
           {Object.keys(groceryitem).map((item) => {

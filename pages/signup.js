@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
+import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai'
 import { ToastContainer, toast } from 'react-toastify';
@@ -359,6 +360,18 @@ const generatePassword = () => {
     //   </div>
     // </div>
     <div className='pt-14 lg:pt-3'>
+      <Head>
+        <title>Signup Page - Onstore</title>
+        <meta name="description" content="Your all needs at one store. Onstore - An ecommerce platform" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+        <link rel="manifest" href="/site.webmanifest" />
+        <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
+        <meta name="msapplication-TileColor" content="#da532c" />
+        <meta name="theme-color" content="#ffffff" />
+      </Head>
+
       <ToastContainer
         position="top-center"
         autoClose={4000}

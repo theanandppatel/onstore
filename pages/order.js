@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import Head from "next/head";
 import Order from "../models/Order";
 import mongoose from "mongoose";
 import { useRouter } from "next/router";
@@ -84,6 +85,35 @@ const MyOrder = ({ cart, subTotal, order, user }) => {
       {/* This example requires Tailwind CSS v2.0+ */}
 
       <div className="px-3 sm:px-5 lg:px-72 pt-28">
+        <Head>
+          <title>Your order {order.orderId} - Onstore</title>
+          <meta
+            name="description"
+            content="Your all needs at one store. Onstore - An ecommerce platform"
+          />
+          <link
+            rel="apple-touch-icon"
+            sizes="180x180"
+            href="/apple-touch-icon.png"
+          />
+          <link
+            rel="icon"
+            type="image/png"
+            sizes="32x32"
+            href="/favicon-32x32.png"
+          />
+          <link
+            rel="icon"
+            type="image/png"
+            sizes="16x16"
+            href="/favicon-16x16.png"
+          />
+          <link rel="manifest" href="/site.webmanifest" />
+          <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
+          <meta name="msapplication-TileColor" content="#da532c" />
+          <meta name="theme-color" content="#ffffff" />
+        </Head>
+
         <div className="max-w-xl">
           <h1 className="text-sm font-semibold uppercase tracking-wide text-blue-600">
             Thank you!
@@ -258,12 +288,10 @@ const MyOrder = ({ cart, subTotal, order, user }) => {
 };
 
 export async function getServerSideProps(context) {
-
-  
   if (!mongoose.connections[0].readyState) {
     await mongoose.connect(process.env.MONGO_URI);
   }
-  
+
   let order = await Order.findOne({ orderId: context.query.id });
 
   return {
