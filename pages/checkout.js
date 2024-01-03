@@ -3,6 +3,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useRouter } from "next/router";
 import Head from "next/head";
+import { redirect } from "next/dist/server/api-utils";
 
 const orderid = require("order-id")("key");
 const Checkout = ({
@@ -245,6 +246,19 @@ const Checkout = ({
   };
 
   const makePayment = async (ofullname, deliveryinfo) => {
+    if(!user.value){
+      toast.error("Please sign in to place an order", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      return;
+    }
+
     let orderId = ("" + (Math.random() + 1)).substring(2, 13);
     let paymentMethod = "Online Payment";
 
@@ -287,20 +301,20 @@ const Checkout = ({
       });
     } else {
       var options = {
-        key: process.env.RAZORPAY_KEY, // Enter the Key ID generated from the Dashboard
-        name: "Onstore",
-        currency: data.currency,
+        key: process.env.NEXT_PUBLIC_RAZORPAY_KEY, // Enter the Key ID generated from the Dashboard
         amount: data.amount,
-        order_id: data.id,
-        description: "Thankyou for your Shopping",
+        currency: data.currency,
+        description: "Thank you for your shopping",
+        name: "Onstore",
         image: "/images/logo-6.png",
+        order_id: data.id,
         handler: async function (response) {
           //Update status into orders table after checking transaction status
+          console.log(response.razorpay_payment_id, response.razorpay_signature)
           const razorData = {
             OrderId: response.razorpay_order_id,
             paymentId: response.razorpay_payment_id,
             razorpaySign: response.razorpay_signature,
-            paymentStatus: response.razorpay_status,
           };
           // Validate payment at server - using webhooks is a better idea.
           const result = await fetch(
@@ -836,9 +850,8 @@ const Checkout = ({
             </div>
           </div>
           <button
-            disabled={disabled}
             className="disabled:bg-gray-400 hover:bg-gray-800 mt-4 mb-8 w-full rounded-md bg-gray-900 px-6 py-3 font-medium text-white"
-            onClick={handleProceedPay}
+            onClick={makePayment}
           >
             Place Order
           </button>

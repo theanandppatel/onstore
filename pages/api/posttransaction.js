@@ -16,7 +16,7 @@ const handler = async (req, res) => {
                 res.status(500).json({success:false})
                 return
             }else{
-            let instance = await new Razorpay({ key_id: process.env.RAZORPAY_KEY, key_secret: process.env.RAZORPAY_SECRET })
+            let instance = await new Razorpay({ key_id: process.env.NEXT_PUBLIC_RAZORPAY_KEY, key_secret: process.env.RAZORPAY_SECRET })
             let info = await instance.orders.fetchPayments(req.body.OrderId)
             let payInfo = {
                 paymentid: info.items[0].id,
