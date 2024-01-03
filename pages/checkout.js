@@ -195,7 +195,7 @@ const Checkout = ({
   const makeCOD = async (deliveryinfo) => {
     let orderId = ("" + (Math.random() + 1)).substring(2, 13);
     let paymentMethod = "Cash On Delivery(COD)";
-    let data2 = {
+    let deliveryData = {
       cart,
       fAmt,
       deliveryinfo,
@@ -210,7 +210,7 @@ const Checkout = ({
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(data2),
+      body: JSON.stringify(deliveryData),
     });
 
     if (data.status == 200) {
@@ -270,7 +270,7 @@ const Checkout = ({
     }
 
     // Make API call to the serverless API
-    let data2 = {
+    let deliveryData = {
       cart,
       fAmt,
       deliveryinfo,
@@ -285,7 +285,7 @@ const Checkout = ({
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(data2),
+      body: JSON.stringify(deliveryData),
     }).then((t) => t.json());
 
     if (data.success == false) {
@@ -851,7 +851,7 @@ const Checkout = ({
           </div>
           <button
             className="disabled:bg-gray-400 hover:bg-gray-800 mt-4 mb-8 w-full rounded-md bg-gray-900 px-6 py-3 font-medium text-white"
-            onClick={makePayment}
+            onClick={handleProceedPay}
           >
             Place Order
           </button>
