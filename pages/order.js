@@ -34,7 +34,13 @@ const MyOrder = ({ cart, subTotal, order, user }) => {
 
   const dateFormat = (d) => {
     var t = new Date(d);
-    return t.getDate() + "-" + monthNames[t.getMonth()] + "-" + t.getFullYear();
+    var day = t.getDate();
+    var month = monthNames[t.getMonth()];
+    var year = t.getFullYear();
+    
+    var formattedDay = day < 10 ? "0" + day : day;
+
+    return formattedDay + "-" + month + "-" + year;
   };
   return (
     // <div>

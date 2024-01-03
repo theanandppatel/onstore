@@ -54,7 +54,6 @@ function MyApp({ Component, pageProps }) {
         setKey(Math.random());
       }
     } catch (error) {
-      console.error(error);
       localStorage.clear();
     }
   }, [router.query]);

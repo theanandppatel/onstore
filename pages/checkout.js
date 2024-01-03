@@ -310,7 +310,6 @@ const Checkout = ({
         order_id: data.id,
         handler: async function (response) {
           //Update status into orders table after checking transaction status
-          console.log(response.razorpay_payment_id, response.razorpay_signature)
           const razorData = {
             OrderId: response.razorpay_order_id,
             paymentId: response.razorpay_payment_id,
