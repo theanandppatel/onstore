@@ -611,7 +611,7 @@ const Myaccount = ({ logout, userdetail, user, token }) => {
                     <li className="md:flex items-center justify-between pr-4 text-sm">
                       <div className="flex w-full md:w-0 flex-1 items-center">
                         <span hidden={edit4 ? true : false}>
-                          {"*".repeat(passwordlen)}
+                          {"*******"}
                         </span>
                         <input
                           hidden={edit4 ? false : true}

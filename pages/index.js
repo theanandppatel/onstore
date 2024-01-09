@@ -439,11 +439,11 @@ const Home = ({ addToCart, featuredproducts, recommendedproducts }) => {
             <div className="col-span-2"><img alt="promo banner 1 image" loading="lazy" width={1806} height={681} decoding="async" data-nimg={1} style={{ color: 'transparent' }} src="../images/GET UPTO.png" />
             </div>
           </Link>
-          <Link href="/">
-            <div className="row-span-2"><img alt="promo banner 2 image" loading="lazy" width={881} height={1406} decoding="async" data-nimg={1} style={{ color: 'transparent' }} src="../images/promo-banner-3.png" />
+          <Link href="/products/fashion-products/flex-push-button-bomber-s">
+            <div className="row-span-2 cursor-pointer"><img alt="promo banner 2 image" loading="lazy" width={881} height={1406} decoding="async" data-nimg={1} style={{ color: 'transparent' }} src="../images/promo-banner-3.png" />
             </div></Link>
-          <Link href="/">
-            <div className="row-span-2">
+          <Link href="/products/fashion-products/flex-sweat-shirt-s">
+            <div className="row-span-2 cursor-pointer">
               <img alt="promo banner 3 image" loading="lazy" width={881} height={1406} decoding="async" data-nimg={1} style={{ color: 'transparent' }} src="../images/promo-banner-2.png" />
             </div></Link>
           <Link href="/">
