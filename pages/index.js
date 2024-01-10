@@ -357,76 +357,6 @@ const Home = ({ addToCart, featuredproducts, recommendedproducts }) => {
                 </div>
               )
             })}
-            {/* <div className="w-full md:w-1/3 xl:w-1/4 p-6 flex flex-col">
-            <a href="#">
-              <img className="hover:grow hover:shadow-lg" src="https://images.unsplash.com/photo-1508423134147-addf71308178?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&h=400&q=80" />
-              <div className="pt-3 flex items-center justify-between">
-                <p className>Product Name</p>
-                <FaCartPlus className="h-6 w-6 fill-current text-gray-500 hover:text-violet-500" />
-              </div>
-              <p className="pt-1 text-gray-900">£9.99</p>
-            </a>
-          </div>
-          <div className="w-full md:w-1/3 xl:w-1/4 p-6 flex flex-col">
-            <a href="#">
-              <img className="hover:grow hover:shadow-lg" src="https://images.unsplash.com/reserve/LJIZlzHgQ7WPSh5KVTCB_Typewriter.jpg?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&h=400&q=80" />
-              <div className="pt-3 flex items-center justify-between">
-                <p className>Product Name</p>
-                <FaCartPlus className="h-6 w-6 fill-current text-gray-500 hover:text-violet-500" />
-              </div>
-              <p className="pt-1 text-gray-900">£9.99</p>
-            </a>
-          </div>
-          <div className="w-full md:w-1/3 xl:w-1/4 p-6 flex flex-col">
-            <a href="#">
-              <img className="hover:grow hover:shadow-lg" src="https://images.unsplash.com/reserve/LJIZlzHgQ7WPSh5KVTCB_Typewriter.jpg?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&h=400&q=80" />
-              <div className="pt-3 flex items-center justify-between">
-                <p className>Product Name</p>
-                <FaCartPlus className="h-6 w-6 fill-current text-gray-500 hover:text-violet-500" />
-              </div>
-              <p className="pt-1 text-gray-900">£9.99</p>
-            </a>
-          </div>
-          <div className="w-full md:w-1/3 xl:w-1/4 p-6 flex flex-col">
-            <a href="#">
-              <img className="hover:grow hover:shadow-lg" src="https://images.unsplash.com/photo-1467949576168-6ce8e2df4e13?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&h=400&q=80" />
-              <div className="pt-3 flex items-center justify-between">
-                <p className>Product Name</p>
-                <FaCartPlus className="h-6 w-6 fill-current text-gray-500 hover:text-violet-500" />
-              </div>
-              <p className="pt-1 text-gray-900">£9.99</p>
-            </a>
-          </div>
-          <div className="w-full md:w-1/3 xl:w-1/4 p-6 flex flex-col">
-            <a href="#">
-              <img className="hover:grow hover:shadow-lg" src="https://images.unsplash.com/photo-1544787219-7f47ccb76574?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&h=400&q=80" />
-              <div className="pt-3 flex items-center justify-between">
-                <p className>Product Name</p>
-                <FaCartPlus className="h-6 w-6 fill-current text-gray-500 hover:text-violet-500" />
-              </div>
-              <p className="pt-1 text-gray-900">£9.99</p>
-            </a>
-          </div>
-          <div className="w-full md:w-1/3 xl:w-1/4 p-6 flex flex-col">
-            <a href="#">
-              <img className="hover:grow hover:shadow-lg" src="https://images.unsplash.com/photo-1550837368-6594235de85c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&h=400&q=80" />
-              <div className="pt-3 flex items-center justify-between">
-                <p className>Product Name</p>
-                <FaCartPlus className="h-6 w-6 fill-current text-gray-500 hover:text-violet-500" />
-              </div>
-              <p className="pt-1 text-gray-900">£9.99</p>
-            </a>
-          </div>
-          <div className="w-full md:w-1/3 xl:w-1/4 p-6 flex flex-col">
-            <a href="#">
-              <img className="hover:grow hover:shadow-lg" src="https://images.unsplash.com/photo-1551431009-a802eeec77b1?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&h=400&q=80" />
-              <div className="pt-3 flex items-center justify-between">
-                <p className>Product Name</p>
-                <FaCartPlus onClick={() => { `${addToCart(slug, 1, "55", "sdshvds", "XL", "red", "tshirt")}` }} className="h-6 w-6 fill-current text-gray-500 hover:text-violet-500" />
-              </div>
-              <p className="pt-1 text-gray-900">£9.99</p>
-            </a>
-          </div> */}
           </div>
         </div>
       </section>
@@ -465,27 +395,6 @@ export async function getServerSideProps(context) {
   }
   let featuredproducts = await FeaturedProduct.find()
   let recommendedproducts = await RecommendedProduct.find()
-
-  // for (let item of featuredproducts) {
-  //     if(item.title in stickers){
-
-  //         if(!stickers[item.title].color.includes(item.color) && item.availableQty>0){
-  //             stickers[item.title].color.push(item.color)
-  //         }
-  //         if(!stickers[item.title].size.includes(item.size) && item.availableQty>0){
-  //             stickers[item.title].size.push(item.size)
-  //         }
-
-  //     }else{
-  //         stickers[item.title] = JSON.parse(JSON.stringify(item))
-
-  //         if(item.availableQty>0){
-  //             stickers[item.title].color = [item.color]
-  //             stickers[item.title].size = [item.size]
-  //         }
-  //     }
-
-  // }
 
   return {
     props: { featuredproducts: JSON.parse(JSON.stringify(featuredproducts)), recommendedproducts: JSON.parse(JSON.stringify(recommendedproducts)) }, // will be passed to the page component as props
