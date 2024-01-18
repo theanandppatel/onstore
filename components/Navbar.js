@@ -322,7 +322,7 @@ const NavbarEle = ({
         </div>
       </div>
 
-      <div className="fixed bottom-0 right-0 left-0 z-50 h-16 md:hidden backdrop-filter backdrop-blur-lg bg-opacity-50 border-b border-gray-200">
+      <div className="fixed bottom-0 right-0 left-0 z-40 h-12 md:h-16 md:hidden backdrop-filter backdrop-blur-lg bg-opacity-50 border-b border-gray-200">
         <ul className="flex h-full">
           <Link href={"/"}>
             <li className="flex-1">
@@ -380,6 +380,10 @@ const NavbarEle = ({
               className={`flex h-full w-full flex-col items-center justify-center text-xs font-medium text-neutral-700 hover:text-violet-700 false ${
                 fullScreenMenu ? "text-slate-200" : ""
               }`}
+              onClick={() => {
+                closeMenu();
+                toggleCart();
+              }}
             >
               <svg
                 stroke="currentColor"
@@ -391,10 +395,6 @@ const NavbarEle = ({
                 height="1.2rem"
                 width="1.2rem"
                 xmlns="http://www.w3.org/2000/svg"
-                onClick={() => {
-                  closeMenu();
-                  toggleCart();
-                }}
               >
                 <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
                 <line x1="3" y1="6" x2="21" y2="6"></line>
