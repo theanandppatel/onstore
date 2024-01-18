@@ -323,7 +323,7 @@ const NavbarEle = ({
         </div>
       </div>
 
-      <div className="fixed bottom-0 right-0 left-0 z-40 h-10 md:h-16 md:hidden backdrop-filter backdrop-blur-lg bg-opacity-50 border-b border-gray-200">
+      <div className="fixed bottom-0 right-0 left-0 z-40 h-14 md:h-16 md:hidden backdrop-filter backdrop-blur-lg bg-opacity-50 border-b border-gray-200">
         <ul className="flex h-full">
           <Link href={"/"}>
             <li className="flex-1">
@@ -376,15 +376,16 @@ const NavbarEle = ({
               <span className="mt-1">Categories</span>
             </a>
           </li>
-          <li className="flex-1">
+          <li className="flex-1" onClick={() => {
+                console.log('click');
+                closeMenu();
+                toggleCart();
+              }}>
             <a
               className={`flex h-full w-full flex-col items-center justify-center text-xs font-medium text-neutral-700 hover:text-violet-700 false ${
                 fullScreenMenu ? "text-slate-200" : ""
               }`}
-              onClick={() => {
-                closeMenu();
-                toggleCart();
-              }}
+              
             >
               <svg
                 stroke="currentColor"
@@ -515,7 +516,7 @@ const NavbarEle = ({
                   leaveFrom="translate-x-0"
                   leaveTo="translate-x-full"
                 >
-                  <Dialog.Panel className="pointer-events-auto w-screen max-w-md h-[93vh] md:h-[100vh]">
+                  <Dialog.Panel className="pointer-events-auto w-screen max-w-md h-[92vh] md:h-[100vh]">
                     <div className="flex h-full flex-col overflow-y-scroll bg-white shadow-xl">
                       <div className="flex-1 overflow-y-auto py-6 px-4 sm:px-6">
                         <div className="flex items-start justify-between">
