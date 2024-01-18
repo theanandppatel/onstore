@@ -68,7 +68,8 @@ const NavbarEle = ({
   };
 
   const toggleCart = () => {
-    setOpen(true);
+    setOpen((open) => !open);
+    console.log(open);
   };
 
   const handleUserLoggedIn = () => {
@@ -322,7 +323,7 @@ const NavbarEle = ({
         </div>
       </div>
 
-      <div className="fixed bottom-0 right-0 left-0 z-40 h-12 md:h-16 md:hidden backdrop-filter backdrop-blur-lg bg-opacity-50 border-b border-gray-200">
+      <div className="fixed bottom-0 right-0 left-0 z-40 h-10 md:h-16 md:hidden backdrop-filter backdrop-blur-lg bg-opacity-50 border-b border-gray-200">
         <ul className="flex h-full">
           <Link href={"/"}>
             <li className="flex-1">
