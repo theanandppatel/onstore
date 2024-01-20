@@ -34,7 +34,7 @@ const Home = ({ addToCart, featuredproducts, recommendedproducts }) => {
           {/*Slide 1*/}
           <input className="carousel-open" type="radio" id="carousel-1" name="carousel" aria-hidden="true" hidden defaultChecked="checked" />
           <div className={`pt-16 carousel-item absolute opacity-0 h-screen`}>
-            <div className="h-full w-full mx-auto flex pt-6 md:pt-0 md:items-center bg-cover bg-right" style={{ backgroundImage: 'url("https://firebasestorage.googleapis.com/v0/b/fir-243cd.appspot.com/o/Carousel%2Fcarousel-1.jpg?alt=media&token=3836a117-0a16-4a51-86a2-2dc96a5982bf")' }}>
+            <div className="h-full w-full mx-auto flex pt-6 md:pt-0 md:items-center bg-cover bg-right" style={{ backgroundImage: `url('/images/carousel-1.webp')` }}>
               <div className="container mx-auto md:mx-24">
                 <div className="flex flex-col w-full lg:w-1/2 md:ml-16 items-center md:items-start px-6 tracking-wide">
                   <span
@@ -78,7 +78,7 @@ const Home = ({ addToCart, featuredproducts, recommendedproducts }) => {
           {/*Slide 2*/}
           <input className="carousel-open" type="radio" id="carousel-2" name="carousel" aria-hidden="true" hidden />
           <div className="pt-16 carousel-item absolute opacity-0 bg-cover bg-right h-screen">
-            <div className="h-full w-full mx-auto flex pt-6 md:pt-0 bg-cover bg-right" style={{ backgroundImage: 'url("https://firebasestorage.googleapis.com/v0/b/fir-243cd.appspot.com/o/Carousel%2Fcarousel-2.jpg?alt=media&token=741c44b5-dce9-4d52-8e37-92bd85bd36bd")' }}>
+            <div className="h-full w-full mx-auto flex pt-6 md:pt-0 bg-cover bg-right" style={{ backgroundImage: `url('/images/carousel-2.webp')` }}>
               <div className="container mx-auto md:mx-24 md:mt-40">
                 <div className="flex flex-col w-full lg:w-1/2 md:ml-16 items-center md:items-start px-6 tracking-wide">
                   <span
@@ -111,7 +111,7 @@ const Home = ({ addToCart, featuredproducts, recommendedproducts }) => {
           {/*Slide 3*/}
           <input className="carousel-open" type="radio" id="carousel-3" name="carousel" aria-hidden="true" hidden />
           <div className="pt-16 carousel-item absolute opacity-0 h-screen">
-            <div className="h-full w-full mx-auto flex pt-6 md:pt-0 md:items-center bg-cover bg-bottom" style={{ backgroundImage: 'url("https://firebasestorage.googleapis.com/v0/b/fir-243cd.appspot.com/o/Carousel%2FUntitled%20design.png?alt=media&token=bd44d187-819a-40d2-9153-d28e85e22d07")' }}>
+            <div className="h-full w-full mx-auto flex pt-6 md:pt-0 md:items-center bg-cover bg-bottom" style={{ backgroundImage: `url('/images/carousel-3.webp')` }}>
               {/* <div className="container mx-auto md:mx-24">
                 <div className="flex flex-col w-full lg:w-1/2 md:ml-16 items-center md:items-start px-6 tracking-wide">
                   <span
