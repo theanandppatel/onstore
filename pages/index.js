@@ -1,3 +1,4 @@
+import { NextSeo } from 'next-seo';
 import Head from 'next/head';
 // import Product from '../models/FeaturedProduct';
 import FeaturedProduct from '../models/FeaturedProduct';
@@ -16,6 +17,10 @@ const Home = ({ addToCart, featuredproducts, recommendedproducts }) => {
 
   return (
     <>
+    <NextSeo
+      title=" Onstore: Shop Fashion, Home Furnishing, Electronics, Beauty & Groceries items"
+      description="Discover endless possibilities at Onstore! Shop trendy fashion, stylish homeware, fresh groceries, cutting-edge electronics, and pampering beauty essentials - all with seamless online shopping, amazing deals, and fast delivery"
+    />
       <Head>
         <title>Home Page - Onstore</title>
         <meta name="description" content="Your all needs at one store. Onstore - An ecommerce platform" />
