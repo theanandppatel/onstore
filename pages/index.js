@@ -9,11 +9,17 @@ import FiShoppingCart from "react-icons/fi";
 import { useRouter } from 'next/router';
 import { FaCartPlus } from "react-icons/fa";
 import mongoose from "mongoose";
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import DisclaimerModal from '../components/DisclaimerModal';
 
 const Home = ({ addToCart, featuredproducts, recommendedproducts }) => {
   const router = useRouter()
   const { slug } = router.query
+  const [showDisclaimer, setShowDisclaimer] = useState(true);
+
+  const handleCloseDisclaimer = () => {
+    setShowDisclaimer(false);
+  };
 
   return (
     <>
@@ -32,6 +38,8 @@ const Home = ({ addToCart, featuredproducts, recommendedproducts }) => {
         <meta name="msapplication-TileColor" content="#da532c" />
         <meta name="theme-color" content="#ffffff" />
       </Head>
+
+      {showDisclaimer && <DisclaimerModal onClose={handleCloseDisclaimer} />}
 
       <div className="carousel relative container mx-auto" style={{ maxWidth: '1600px' }}>
         <div className="carousel-inner relative overflow-hidden w-full">
