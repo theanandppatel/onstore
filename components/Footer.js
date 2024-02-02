@@ -26,7 +26,7 @@ const Footer = () => {
               <nav aria-label="Footer About Nav" className="mt-8">
                 <ul className="space-y-4 text-sm">
                   <li>
-                    <Link href={"/cart"}>
+                    <Link href={"/"}>
                       <a className="text-gray-700 transition hover:text-blue-600">
                         Contact Us
                       </a>
