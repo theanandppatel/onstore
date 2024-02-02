@@ -1,62 +1,119 @@
-import React from 'react'
-import Head from 'next/head';
-import Link from 'next/link'
+import React from "react";
+import Head from "next/head";
+import Link from "next/link";
 import mongoose from "mongoose";
-import Product from '../models/Product';
+import Product from "../models/Product";
 
 const Tshirt = ({ groceryitem }) => {
   return (
     <>
-    <Head>
+      <Head>
         <title>Grocery Items - Onstore</title>
-        <meta name="description" content="Your all needs at one store. Onstore - An ecommerce platform" />
-        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+        <meta name="title" content="Buy Grocery Items from Onstore" />
+        <meta
+          name="description"
+          content="Discover endless possibilities at Onstore! Shop trendy fashion, stylish homeware, fresh groceries, cutting-edge electronics, and pampering beauty essentials - all with seamless online shopping, amazing deals, and fast delivery"
+        />
+        <meta
+          name="keywords"
+          content="onstore, onstore shopping, shopping, fashio items, electronics items, personal care items, beauty products, onstore vercel, buy fashion products"
+        />
+        <meta name="robots" content="index, follow" />
+        <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="language" content="English" />
+        <link
+          rel="apple-touch-icon"
+          sizes="180x180"
+          href="/apple-touch-icon.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="32x32"
+          href="/favicon-32x32.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="16x16"
+          href="/favicon-16x16.png"
+        />
         <link rel="manifest" href="/site.webmanifest" />
         <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
         <meta name="msapplication-TileColor" content="#da532c" />
         <meta name="theme-color" content="#ffffff" />
       </Head>
 
-      {Object.keys(groceryitem).length == 0 ? <p className='text-gray-600 text-center pt-40 pb-40'>Sorry all the Grocery Products are currently out of stock. New stock coming soon. Stay Tuned!</p> :
-        <div className='pt-32 pb-36 md:ml-14 items-center lg:gap-4 lg:grid-cols-4 grid grid-cols-2' style={{ textAlign: "-webkit-center" }}>
+      {Object.keys(groceryitem).length == 0 ? (
+        <p className="text-gray-600 text-center pt-40 pb-40">
+          Sorry all the Grocery Products are currently out of stock. New stock
+          coming soon. Stay Tuned!
+        </p>
+      ) : (
+        <div
+          className="pt-32 pb-36 md:ml-14 items-center lg:gap-4 lg:grid-cols-4 grid grid-cols-2"
+          style={{ textAlign: "-webkit-center" }}
+        >
           {Object.keys(groceryitem).map((item) => {
             return (
-              <div className="max-w-xs shadow-lg rounded-xl p-6 relative group" key={groceryitem[item]._id}>
+              <div
+                className="max-w-xs shadow-lg rounded-xl p-6 relative group"
+                key={groceryitem[item]._id}
+              >
                 <div className="flex flex-col ">
                   <div>
-                    {groceryitem[item].availableQty > 0 ? <div className="absolute z-10 flex flex-col top-2 right-2 items-center bg-green-600 text-white text-xs px-2 py-1 ml-3 rounded-lg">INSTOCK</div>
-                      : <div className="flex items-center bg-red-600 text-white text-xs px-2 py-1 ml-3 rounded-lg">OUTOFSTOCK</div>}
+                    {groceryitem[item].availableQty > 0 ? (
+                      <div className="absolute z-10 flex flex-col top-2 right-2 items-center bg-green-600 text-white text-xs px-2 py-1 ml-3 rounded-lg">
+                        INSTOCK
+                      </div>
+                    ) : (
+                      <div className="flex items-center bg-red-600 text-white text-xs px-2 py-1 ml-3 rounded-lg">
+                        OUTOFSTOCK
+                      </div>
+                    )}
                     <div className="relative h-48 w-full mb-3">
-                    <Link href={`/products/${groceryitem[item].category}/${groceryitem[item].slug}`}><img src={`${groceryitem[item].img}`} alt= {groceryitem[item].title} className="w-full h-full object-contain rounded-2xl cursor-pointer" /></Link>
+                      <Link
+                        href={`/products/${groceryitem[item].category}/${groceryitem[item].slug}`}
+                      >
+                        <img
+                          src={`${groceryitem[item].img}`}
+                          alt={groceryitem[item].title}
+                          className="w-full h-full object-contain rounded-2xl cursor-pointer"
+                        />
+                      </Link>
                     </div>
                     <div>
                       <div>
-
                         <div className="items-center w-full justify-between min-w-0 h-16">
-                          <h2 className="text-base md:text-lg mr-auto cursor-pointer text-black hover:text-blue-700 overflow-hidden line-clamp-2 object-contain"><Link href={`/products/${groceryitem[item].category}/${groceryitem[item].slug}`}>{groceryitem[item].title}</Link></h2>
-
+                          <h2 className="text-base md:text-lg mr-auto cursor-pointer text-black hover:text-blue-700 overflow-hidden line-clamp-2 object-contain">
+                            <Link
+                              href={`/products/${groceryitem[item].category}/${groceryitem[item].slug}`}
+                            >
+                              {groceryitem[item].title}
+                            </Link>
+                          </h2>
                         </div>
                       </div>
                       <div className="md:flex space-x-2 text-sm font-medium justify-between mt-5">
-                        <div className="text-xl font-semibold mt-1">₹{groceryitem[item].price.toLocaleString('en-IN')}</div>
-                        <Link href={`/products/${groceryitem[item].category}/${groceryitem[item].slug}`}>
-                        <button className="mt-3 md:mt-0 transition ease-in duration-300 inline-flex items-center text-sm font-medium md:mb-0 bg-black px-5 py-2 hover:shadow-lg tracking-wider text-white rounded-full hover:bg-blue-700">
-                          <span>Buy Now</span>
-                        </button>
+                        <div className="text-xl font-semibold mt-1">
+                          ₹{groceryitem[item].price.toLocaleString("en-IN")}
+                        </div>
+                        <Link
+                          href={`/products/${groceryitem[item].category}/${groceryitem[item].slug}`}
+                        >
+                          <button className="mt-3 md:mt-0 transition ease-in duration-300 inline-flex items-center text-sm font-medium md:mb-0 bg-black px-5 py-2 hover:shadow-lg tracking-wider text-white rounded-full hover:bg-blue-700">
+                            <span>Buy Now</span>
+                          </button>
                         </Link>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-            )
-          })
-          }
-
+            );
+          })}
         </div>
-      }
+      )}
       {/* {Object.keys(stickers).length==0 ? <p className='text-gray-600 text-center mt-20 mb-52'>Sorry all the Stickers are currently out of stock. New stock coming soon. Stay Tuned!</p>:
     <section className="text-gray-600 body-font">
       <div className="container px-4 py-24 mx-auto">
@@ -79,14 +136,14 @@ const Tshirt = ({ groceryitem }) => {
       </div>
     </section>} */}
     </>
-  )
-}
+  );
+};
 
 export async function getServerSideProps(context) {
   if (!mongoose.connections[0].readyState) {
-    await mongoose.connect(process.env.MONGO_URI)
+    await mongoose.connect(process.env.MONGO_URI);
   }
-  let groceryitem = await Product.find({ category: 'grocery-items' })
+  let groceryitem = await Product.find({ category: "grocery-items" });
 
   // let tshirts = {}
 
@@ -116,7 +173,7 @@ export async function getServerSideProps(context) {
 
   return {
     props: { groceryitem: JSON.parse(JSON.stringify(groceryitem)) }, // will be passed to the page component as props
-  }
+  };
 }
 
-export default Tshirt
+export default Tshirt;

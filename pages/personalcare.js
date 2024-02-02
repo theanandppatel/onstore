@@ -10,9 +10,20 @@ const PersonalCare = ({ personalcare }) => {
       <Head>
         <title>Personalcare items - Onstore</title>
         <meta
-          name="description"
-          content="Your all needs at one store. Onstore - An ecommerce platform"
+          name="title"
+          content="Buy Personalcare and Beauty products from Onstore"
         />
+        <meta
+          name="description"
+          content="Discover endless possibilities at Onstore! Shop trendy fashion, stylish homeware, fresh groceries, cutting-edge electronics, and pampering beauty essentials - all with seamless online shopping, amazing deals, and fast delivery"
+        />
+        <meta
+          name="keywords"
+          content="onstore, onstore shopping, shopping, fashio items, electronics items, personal care items, beauty products, onstore vercel, buy fashion products"
+        />
+        <meta name="robots" content="index, follow" />
+        <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="language" content="English" />
         <link
           rel="apple-touch-icon"
           sizes="180x180"

@@ -38,7 +38,19 @@ const Fashion = ({ fashionitems, stockFlag }) => {
     <>
       <Head>
         <title>Fashion items - Onstore</title>
-        <meta name="description" content="Your all needs at one store" />
+        <meta name="title" content="Buy Fashion items from Onstore" />
+        <meta
+          name="description"
+          content="Discover endless possibilities at Onstore! Shop trendy fashion, stylish homeware, fresh groceries, cutting-edge electronics, and pampering beauty essentials - all with seamless online shopping, amazing deals, and fast delivery"
+        />
+        <meta
+          name="keywords"
+          content="onstore, onstore shopping, shopping, fashio items, electronics items, personal care items, beauty products, onstore vercel, buy fashion products"
+        />
+        <meta name="robots" content="index, follow" />
+        <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="language" content="English" />
+        <meta name="author" content="anand patel" />
         <link
           rel="apple-touch-icon"
           sizes="180x180"

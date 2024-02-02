@@ -1,20 +1,20 @@
-import { NextSeo } from 'next-seo';
-import Head from 'next/head';
+import { NextSeo } from "next-seo";
+import Head from "next/head";
 // import Product from '../models/FeaturedProduct';
-import FeaturedProduct from '../models/FeaturedProduct';
-import RecommendedProduct from '../models/RecommendedProduct';
-import Image from 'next/image';
-import Link from 'next/link';
+import FeaturedProduct from "../models/FeaturedProduct";
+import RecommendedProduct from "../models/RecommendedProduct";
+import Image from "next/image";
+import Link from "next/link";
 import FiShoppingCart from "react-icons/fi";
-import { useRouter } from 'next/router';
+import { useRouter } from "next/router";
 import { FaCartPlus } from "react-icons/fa";
 import mongoose from "mongoose";
-import { useEffect, useState } from 'react';
-import DisclaimerModal from '../components/DisclaimerModal';
+import { useEffect, useState } from "react";
+import DisclaimerModal from "../components/DisclaimerModal";
 
 const Home = ({ addToCart, featuredproducts, recommendedproducts }) => {
-  const router = useRouter()
-  const { slug } = router.query
+  const router = useRouter();
+  const { slug } = router.query;
   const [showDisclaimer, setShowDisclaimer] = useState(true);
 
   const handleCloseDisclaimer = () => {
@@ -23,31 +23,72 @@ const Home = ({ addToCart, featuredproducts, recommendedproducts }) => {
 
   return (
     <>
-    <NextSeo
-      title=" Onstore: Shop Fashion, Home Furnishing, Electronics, Beauty & Groceries items"
-      description="Discover endless possibilities at Onstore! Shop trendy fashion, stylish homeware, fresh groceries, cutting-edge electronics, and pampering beauty essentials - all with seamless online shopping, amazing deals, and fast delivery"
-    />
+      <NextSeo
+        title=" Onstore: Shop Fashion, Home Furnishing, Electronics, Beauty & Groceries items"
+        description="Discover endless possibilities at Onstore! Shop trendy fashion, stylish homeware, fresh groceries, cutting-edge electronics, and pampering beauty essentials - all with seamless online shopping, amazing deals, and fast delivery"
+      />
       <Head>
         <title>Home Page - Onstore</title>
-        <meta name="description" content="Your all needs at one store. Onstore - An ecommerce platform" />
-        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+        <meta
+          name="title"
+          content="Onstore: Shop Fashion, Home Furnishing, Electronics, Beauty & Groceries items"
+        />
+        <meta
+          name="description"
+          content="Discover endless possibilities at Onstore! Shop trendy fashion, stylish homeware, fresh groceries, cutting-edge electronics, and pampering beauty essentials - all with seamless online shopping, amazing deals, and fast delivery"
+        />
+        <meta
+          name="keywords"
+          content="onstore, onstore shopping, shopping, fashio items, electronics items, personal care items, beauty products, onstore vercel, buy fashion products"
+        />
+        <meta name="robots" content="index, follow" />
+        <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="language" content="English" />
+        <meta name="author" content="anand patel" />
+
+        <link
+          rel="apple-touch-icon"
+          sizes="180x180"
+          href="/apple-touch-icon.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="32x32"
+          href="/favicon-32x32.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="16x16"
+          href="/favicon-16x16.png"
+        />
         <link rel="manifest" href="/site.webmanifest" />
         <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
-        <meta name="msapplication-TileColor" content="#da532c" />
-        <meta name="theme-color" content="#ffffff" />
       </Head>
 
       {showDisclaimer && <DisclaimerModal onClose={handleCloseDisclaimer} />}
 
-      <div className="carousel relative container mx-auto" style={{ maxWidth: '1600px' }}>
+      <div
+        className="carousel relative container mx-auto"
+        style={{ maxWidth: "1600px" }}
+      >
         <div className="carousel-inner relative overflow-hidden w-full">
-
           {/*Slide 1*/}
-          <input className="carousel-open" type="radio" id="carousel-1" name="carousel" aria-hidden="true" hidden defaultChecked="checked" />
+          <input
+            className="carousel-open"
+            type="radio"
+            id="carousel-1"
+            name="carousel"
+            aria-hidden="true"
+            hidden
+            defaultChecked="checked"
+          />
           <div className={`pt-16 carousel-item absolute opacity-0 h-screen`}>
-            <div className="h-full w-full mx-auto flex pt-6 md:pt-0 md:items-center bg-cover bg-right" style={{ backgroundImage: `url('/images/carousel-1.webp')` }}>
+            <div
+              className="h-full w-full mx-auto flex pt-6 md:pt-0 md:items-center bg-cover bg-right"
+              style={{ backgroundImage: `url('/images/carousel-1.webp')` }}
+            >
               <div className="container mx-auto md:mx-24">
                 <div className="flex flex-col w-full lg:w-1/2 md:ml-16 items-center md:items-start px-6 tracking-wide">
                   <span
@@ -72,13 +113,24 @@ const Home = ({ addToCart, featuredproducts, recommendedproducts }) => {
                     Anyone can beat you but no one can beat your outfit as long as you wear Dine outfits.
                   </h3> */}
                   <Link
-                    href={'/electronics'}
+                    href={"/electronics"}
                     data-aos="fade-up"
                     data-aos-delay="500"
                     className="mb-10 flex items-center rounded bg-zinc-900 py-2.5 px-8 text-base font-normal text-white shadow-sm shadow-zinc-500"
                   >
-                    <button type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                      <svg aria-hidden="true" className="w-5 h-5 mr-2 -ml-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"></path></svg>
+                    <button
+                      type="button"
+                      className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                    >
+                      <svg
+                        aria-hidden="true"
+                        className="w-5 h-5 mr-2 -ml-1"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"></path>
+                      </svg>
                       Shop now
                     </button>
                   </Link>
@@ -86,12 +138,32 @@ const Home = ({ addToCart, featuredproducts, recommendedproducts }) => {
               </div>
             </div>
           </div>
-          <label htmlFor="carousel-3" className="prev control-1 w-10 h-10 ml-2 md:ml-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-gray-900 leading-tight text-center z-10 inset-y-0 left-0 my-auto">‹</label>
-          <label htmlFor="carousel-2" className="next control-1 w-10 h-10 mr-2 md:mr-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-gray-900 leading-tight text-center z-10 inset-y-0 right-0 my-auto">›</label>
+          <label
+            htmlFor="carousel-3"
+            className="prev control-1 w-10 h-10 ml-2 md:ml-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-gray-900 leading-tight text-center z-10 inset-y-0 left-0 my-auto"
+          >
+            ‹
+          </label>
+          <label
+            htmlFor="carousel-2"
+            className="next control-1 w-10 h-10 mr-2 md:mr-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-gray-900 leading-tight text-center z-10 inset-y-0 right-0 my-auto"
+          >
+            ›
+          </label>
           {/*Slide 2*/}
-          <input className="carousel-open" type="radio" id="carousel-2" name="carousel" aria-hidden="true" hidden />
+          <input
+            className="carousel-open"
+            type="radio"
+            id="carousel-2"
+            name="carousel"
+            aria-hidden="true"
+            hidden
+          />
           <div className="pt-16 carousel-item absolute opacity-0 bg-cover bg-right h-screen">
-            <div className="h-full w-full mx-auto flex pt-6 md:pt-0 bg-cover bg-right" style={{ backgroundImage: `url('/images/carousel-2.webp')` }}>
+            <div
+              className="h-full w-full mx-auto flex pt-6 md:pt-0 bg-cover bg-right"
+              style={{ backgroundImage: `url('/images/carousel-2.webp')` }}
+            >
               <div className="container mx-auto md:mx-24 md:mt-40">
                 <div className="flex flex-col w-full lg:w-1/2 md:ml-16 items-center md:items-start px-6 tracking-wide">
                   <span
@@ -119,12 +191,32 @@ const Home = ({ addToCart, featuredproducts, recommendedproducts }) => {
               </div>
             </div>
           </div>
-          <label htmlFor="carousel-1" className="prev control-2 w-10 h-10 ml-2 md:ml-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-gray-900  leading-tight text-center z-10 inset-y-0 left-0 my-auto">‹</label>
-          <label htmlFor="carousel-3" className="next control-2 w-10 h-10 mr-2 md:mr-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-gray-900  leading-tight text-center z-10 inset-y-0 right-0 my-auto">›</label>
+          <label
+            htmlFor="carousel-1"
+            className="prev control-2 w-10 h-10 ml-2 md:ml-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-gray-900  leading-tight text-center z-10 inset-y-0 left-0 my-auto"
+          >
+            ‹
+          </label>
+          <label
+            htmlFor="carousel-3"
+            className="next control-2 w-10 h-10 mr-2 md:mr-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-gray-900  leading-tight text-center z-10 inset-y-0 right-0 my-auto"
+          >
+            ›
+          </label>
           {/*Slide 3*/}
-          <input className="carousel-open" type="radio" id="carousel-3" name="carousel" aria-hidden="true" hidden />
+          <input
+            className="carousel-open"
+            type="radio"
+            id="carousel-3"
+            name="carousel"
+            aria-hidden="true"
+            hidden
+          />
           <div className="pt-16 carousel-item absolute opacity-0 h-screen">
-            <div className="h-full w-full mx-auto flex pt-6 md:pt-0 md:items-center bg-cover bg-bottom" style={{ backgroundImage: `url('/images/carousel-3.webp')` }}>
+            <div
+              className="h-full w-full mx-auto flex pt-6 md:pt-0 md:items-center bg-cover bg-bottom"
+              style={{ backgroundImage: `url('/images/carousel-3.webp')` }}
+            >
               {/* <div className="container mx-auto md:mx-24">
                 <div className="flex flex-col w-full lg:w-1/2 md:ml-16 items-center md:items-start px-6 tracking-wide">
                   <span
@@ -152,24 +244,48 @@ const Home = ({ addToCart, featuredproducts, recommendedproducts }) => {
               </div> */}
             </div>
           </div>
-          <label htmlFor="carousel-2" className="prev control-3 w-10 h-10 ml-2 md:ml-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-gray-900  leading-tight text-center z-10 inset-y-0 left-0 my-auto">‹</label>
-          <label htmlFor="carousel-1" className="next control-3 w-10 h-10 mr-2 md:mr-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-gray-900  leading-tight text-center z-10 inset-y-0 right-0 my-auto">›</label>
+          <label
+            htmlFor="carousel-2"
+            className="prev control-3 w-10 h-10 ml-2 md:ml-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-gray-900  leading-tight text-center z-10 inset-y-0 left-0 my-auto"
+          >
+            ‹
+          </label>
+          <label
+            htmlFor="carousel-1"
+            className="next control-3 w-10 h-10 mr-2 md:mr-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-gray-900  leading-tight text-center z-10 inset-y-0 right-0 my-auto"
+          >
+            ›
+          </label>
           {/* Add additional indicators for each slide*/}
           <ol className="carousel-indicators">
             <li className="inline-block mr-3">
-              <label htmlFor="carousel-1" className="carousel-bullet cursor-pointer block text-4xl text-gray-400 hover:text-gray-900">•</label>
+              <label
+                htmlFor="carousel-1"
+                className="carousel-bullet cursor-pointer block text-4xl text-gray-400 hover:text-gray-900"
+              >
+                •
+              </label>
             </li>
             <li className="inline-block mr-3">
-              <label htmlFor="carousel-2" className="carousel-bullet cursor-pointer block text-4xl text-gray-400 hover:text-gray-900">•</label>
+              <label
+                htmlFor="carousel-2"
+                className="carousel-bullet cursor-pointer block text-4xl text-gray-400 hover:text-gray-900"
+              >
+                •
+              </label>
             </li>
             <li className="inline-block mr-3">
-              <label htmlFor="carousel-3" className="carousel-bullet cursor-pointer block text-4xl text-gray-400 hover:text-gray-900">•</label>
+              <label
+                htmlFor="carousel-3"
+                className="carousel-bullet cursor-pointer block text-4xl text-gray-400 hover:text-gray-900"
+              >
+                •
+              </label>
             </li>
           </ol>
         </div>
       </div>
-      <div>
-      </div>
+      <div></div>
 
       {/* Featured Item Section Start  */}
       <section className="py-12 bg-white sm:py-16 lg:py-20">
@@ -178,29 +294,52 @@ const Home = ({ addToCart, featuredproducts, recommendedproducts }) => {
             Featured Items
           </span>
           <div className="max-w-md mx-auto text-center">
-            <h2 className="text-2xl font-bold text-gray-900 sm:text-3xl">Our featured items</h2>
-            <p className="mt-4 text-base font-normal leading-7 text-gray-600">Discover the latest and greatest with our featured item.</p>
+            <h2 className="text-2xl font-bold text-gray-900 sm:text-3xl">
+              Our featured items
+            </h2>
+            <p className="mt-4 text-base font-normal leading-7 text-gray-600">
+              Discover the latest and greatest with our featured item.
+            </p>
           </div>
 
           <div className="grid grid-cols-2 gap-6 mt-10 lg:mt-16 lg:gap-4 lg:grid-cols-4">
             {Object.keys(featuredproducts).map((item) => {
               return (
-
-                <div key={featuredproducts[item]._id} className="relative group">
+                <div
+                  key={featuredproducts[item]._id}
+                  className="relative group"
+                >
                   <div className="overflow-hidden aspect-w-1 aspect-h-1">
-                    <img className="object-cover w-full h-full transition-all duration-300 group-hover:scale-125" src={`${featuredproducts[item].img[0]}`} alt={featuredproducts[item].title} />
+                    <img
+                      className="object-cover w-full h-full transition-all duration-300 group-hover:scale-125"
+                      src={`${featuredproducts[item].img[0]}`}
+                      alt={featuredproducts[item].title}
+                    />
                   </div>
                   <div className="absolute left-3 top-3">
-                    {featuredproducts[item].slug == "home-assistant" && <p className="sm:px-3 sm:py-1.5 px-1.5 py-1 text-[8px] sm:text-xs font-bold tracking-wide text-gray-900 uppercase bg-white rounded-full">New</p>}
-                    {featuredproducts[item].slug == "smart-light" && <p className="sm:px-3 sm:py-1.5 px-1.5 py-1 text-[8px] sm:text-xs font-bold tracking-wide text-violet-600 uppercase bg-violet-100 rounded-full">Sale</p>}
+                    {featuredproducts[item].slug == "home-assistant" && (
+                      <p className="sm:px-3 sm:py-1.5 px-1.5 py-1 text-[8px] sm:text-xs font-bold tracking-wide text-gray-900 uppercase bg-white rounded-full">
+                        New
+                      </p>
+                    )}
+                    {featuredproducts[item].slug == "smart-light" && (
+                      <p className="sm:px-3 sm:py-1.5 px-1.5 py-1 text-[8px] sm:text-xs font-bold tracking-wide text-violet-600 uppercase bg-violet-100 rounded-full">
+                        Sale
+                      </p>
+                    )}
                   </div>
                   <div className="flex items-start justify-between mt-4 space-x-4">
                     <div>
                       <h3 className="text-xs font-bold text-gray-900 sm:text-sm md:text-base">
-                        <Link href={`/products/${featuredproducts[item].category}/${featuredproducts[item].slug}`}>
-                          <span className='cursor-pointer line-clamp-2'>
+                        <Link
+                          href={`/products/${featuredproducts[item].category}/${featuredproducts[item].slug}`}
+                        >
+                          <span className="cursor-pointer line-clamp-2">
                             {featuredproducts[item].title}
-                            <span className="absolute inset-0" aria-hidden="true"></span>
+                            <span
+                              className="absolute inset-0"
+                              aria-hidden="true"
+                            ></span>
                           </span>
                         </Link>
                       </h3>
@@ -237,12 +376,13 @@ const Home = ({ addToCart, featuredproducts, recommendedproducts }) => {
                     </div>
 
                     <div className="text-right">
-                      <p className="text-xs pr-2 font-bold text-gray-900 sm:text-sm md:text-base">₹{featuredproducts[item].price.toLocaleString('en-IN')}</p>
+                      <p className="text-xs pr-2 font-bold text-gray-900 sm:text-sm md:text-base">
+                        ₹{featuredproducts[item].price.toLocaleString("en-IN")}
+                      </p>
                     </div>
                   </div>
                 </div>
-
-              )
+              );
             })}
           </div>
         </div>
@@ -258,8 +398,9 @@ const Home = ({ addToCart, featuredproducts, recommendedproducts }) => {
                 Summer styles are finally here
               </h1>
               <p className="mt-4 text-xl text-gray-500">
-                This year, our new summer collection will shelter you from the harsh elements of a world that doesn&apos;t care
-                if you live or die.
+                This year, our new summer collection will shelter you from the
+                harsh elements of a world that doesn&apos;t care if you live or
+                die.
               </p>
             </div>
             <div>
@@ -330,11 +471,10 @@ const Home = ({ addToCart, featuredproducts, recommendedproducts }) => {
                   </div>
                 </div>
 
-                <Link
-                  href={'/fashion'}
-
-                >
-                  <button className='className="inline-block rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-center font-medium text-white hover:bg-indigo-700"'>Shop Collection</button>
+                <Link href={"/fashion"}>
+                  <button className='className="inline-block rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-center font-medium text-white hover:bg-indigo-700"'>
+                    Shop Collection
+                  </button>
                 </Link>
               </div>
             </div>
@@ -351,67 +491,133 @@ const Home = ({ addToCart, featuredproducts, recommendedproducts }) => {
           <div className="container mx-auto flex items-center flex-wrap pt-4 pb-12">
             <nav id="store" className="w-full top-0 px-6 py-1">
               <div className="max-w-md mx-auto text-center">
-                <h2 className="text-2xl font-bold text-gray-900 sm:text-3xl">Recommended items</h2>
-                <p className="mt-4 text-base font-normal leading-7 text-gray-600">Shop Our Highly Recommended Products Today!</p>
+                <h2 className="text-2xl font-bold text-gray-900 sm:text-3xl">
+                  Recommended items
+                </h2>
+                <p className="mt-4 text-base font-normal leading-7 text-gray-600">
+                  Shop Our Highly Recommended Products Today!
+                </p>
               </div>
             </nav>
             {Object.keys(recommendedproducts).map((item) => {
               return (
-                <div key={recommendedproducts[item]._id} className="w-full md:w-1/3 xl:w-1/4 p-6 flex flex-col">
-                  <Link href={`/products/${recommendedproducts[item].category}/${recommendedproducts[item].slug}`}>
-                    <div className='cursor-pointer'>
-                      <img className="hover:grow hover:shadow-lg w-full h-80 object-contain py-5" src={`${recommendedproducts[item].img[0]}`} />
+                <div
+                  key={recommendedproducts[item]._id}
+                  className="w-full md:w-1/3 xl:w-1/4 p-6 flex flex-col"
+                >
+                  <Link
+                    href={`/products/${recommendedproducts[item].category}/${recommendedproducts[item].slug}`}
+                  >
+                    <div className="cursor-pointer">
+                      <img
+                        className="hover:grow hover:shadow-lg w-full h-80 object-contain py-5"
+                        src={`${recommendedproducts[item].img[0]}`}
+                      />
                       <div className="pt-3 flex items-center justify-between">
-                        <p className="text-black text-base pr-3 line-clamp-2">{featuredproducts[item].title}</p>
-                        <p className="pt-1 pr-3 text-black font-bold">₹{recommendedproducts[item].price.toLocaleString('en-IN')}</p>
+                        <p className="text-black text-base pr-3 line-clamp-2">
+                          {featuredproducts[item].title}
+                        </p>
+                        <p className="pt-1 pr-3 text-black font-bold">
+                          ₹
+                          {recommendedproducts[item].price.toLocaleString(
+                            "en-IN"
+                          )}
+                        </p>
                       </div>
                     </div>
                   </Link>
                 </div>
-              )
+              );
             })}
           </div>
         </div>
       </section>
 
       <div className="mx-auto flex flex-col items-center px-4 py-10 md:container">
-        <span className="mb-4 text-sm font-bold uppercase text-violet-700">Promotions</span>
-        <h2 className="mb-6 text-center text-3xl font-bold text-black md:text-4xl">Our Promotions Events</h2>
+        <span className="mb-4 text-sm font-bold uppercase text-violet-700">
+          Promotions
+        </span>
+        <h2 className="mb-6 text-center text-3xl font-bold text-black md:text-4xl">
+          Our Promotions Events
+        </h2>
         <div className="grid w-full max-w-[1150px] gap-3 md:grid-cols-4">
           <Link href="/fashion">
-            <div className="col-span-2"><img alt="promo banner 1 image" loading="lazy" width={1806} height={681} decoding="async" data-nimg={1} style={{ color: 'transparent' }} src="../images/GET UPTO.png" />
+            <div className="col-span-2">
+              <img
+                alt="promo banner 1 image"
+                loading="lazy"
+                width={1806}
+                height={681}
+                decoding="async"
+                data-nimg={1}
+                style={{ color: "transparent" }}
+                src="../images/GET UPTO.png"
+              />
             </div>
           </Link>
           <Link href="/products/fashion-products/flex-push-button-bomber-s">
-            <div className="row-span-2 cursor-pointer"><img alt="promo banner 2 image" loading="lazy" width={881} height={1406} decoding="async" data-nimg={1} style={{ color: 'transparent' }} src="../images/promo-banner-3.png" />
-            </div></Link>
+            <div className="row-span-2 cursor-pointer">
+              <img
+                alt="promo banner 2 image"
+                loading="lazy"
+                width={881}
+                height={1406}
+                decoding="async"
+                data-nimg={1}
+                style={{ color: "transparent" }}
+                src="../images/promo-banner-3.png"
+              />
+            </div>
+          </Link>
           <Link href="/products/fashion-products/flex-sweat-shirt-s">
             <div className="row-span-2 cursor-pointer">
-              <img alt="promo banner 3 image" loading="lazy" width={881} height={1406} decoding="async" data-nimg={1} style={{ color: 'transparent' }} src="../images/promo-banner-2.png" />
-            </div></Link>
+              <img
+                alt="promo banner 3 image"
+                loading="lazy"
+                width={881}
+                height={1406}
+                decoding="async"
+                data-nimg={1}
+                style={{ color: "transparent" }}
+                src="../images/promo-banner-2.png"
+              />
+            </div>
+          </Link>
           <Link href="/">
-            <div className="col-span-2"><img alt="promo banner 4 image" loading="lazy" width={1806} height={681} decoding="async" data-nimg={1} style={{ color: 'transparent' }} src="../images/promotion-2.png" />
-            </div></Link></div>
+            <div className="col-span-2">
+              <img
+                alt="promo banner 4 image"
+                loading="lazy"
+                width={1806}
+                height={681}
+                decoding="async"
+                data-nimg={1}
+                style={{ color: "transparent" }}
+                src="../images/promotion-2.png"
+              />
+            </div>
+          </Link>
+        </div>
       </div>
 
-
-
       {/* More Store Item Section Ends  */}
-
     </>
-  )
-}
+  );
+};
 
 export async function getServerSideProps(context) {
   if (!mongoose.connections[0].readyState) {
-    await mongoose.connect(process.env.MONGO_URI)
+    await mongoose.connect(process.env.MONGO_URI);
   }
-  let featuredproducts = await FeaturedProduct.find()
-  let recommendedproducts = await RecommendedProduct.find()
+  let featuredproducts = await FeaturedProduct.find();
+  let recommendedproducts = await RecommendedProduct.find();
 
   return {
-    props: { featuredproducts: JSON.parse(JSON.stringify(featuredproducts)), recommendedproducts: JSON.parse(JSON.stringify(recommendedproducts)) }, // will be passed to the page component as props
-  }
+    props: {
+      featuredproducts: JSON.parse(JSON.stringify(featuredproducts)),
+      recommendedproducts: JSON.parse(JSON.stringify(recommendedproducts)),
+    }, // will be passed to the page component as props
+  };
 }
 
-export default Home
+export default Home;

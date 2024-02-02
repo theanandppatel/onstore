@@ -1,41 +1,91 @@
-import React from 'react'
-import Link from 'next/link'
-import Image from 'next/image'
+import React from "react";
+import Link from "next/link";
+import Image from "next/image";
 import mongoose from "mongoose";
-import Product from '../models/Product';
-import Head from 'next/head'; 
-
+import Product from "../models/Product";
+import Head from "next/head";
 
 const Electronics = ({ electronicproducts, stockFlag }) => {
   return (
     <>
-    <Head>
+      <Head>
         <title>Electronic items - Onstore</title>
-        <meta name="description" content="Your all needs at one store" />
-        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+        <meta name="title" content="Buy Electronic items from Onstore" />
+        <meta
+          name="description"
+          content="Discover endless possibilities at Onstore! Shop trendy fashion, stylish homeware, fresh groceries, cutting-edge electronics, and pampering beauty essentials - all with seamless online shopping, amazing deals, and fast delivery"
+        />
+        <meta
+          name="keywords"
+          content="onstore, onstore shopping, shopping, fashio items, electronics items, personal care items, beauty products, onstore vercel, buy fashion products"
+        />
+        <meta name="robots" content="index, follow" />
+        <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="language" content="English" />
+        <link
+          rel="apple-touch-icon"
+          sizes="180x180"
+          href="/apple-touch-icon.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="32x32"
+          href="/favicon-32x32.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="16x16"
+          href="/favicon-16x16.png"
+        />
         <link rel="manifest" href="/site.webmanifest" />
         <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
         <meta name="msapplication-TileColor" content="#da532c" />
         <meta name="theme-color" content="#ffffff" />
       </Head>
-      
-      {Object.keys(electronicproducts).length == 0 ? <p className='text-gray-600 text-center pt-40 pb-40'>Sorry all the Electronic Items are currently out of stock. New stock coming soon. Stay Tuned!</p> :
-        <div className='pt-32 pb-36 md:ml-14 items-center lg:gap-4 lg:grid-cols-4 grid grid-cols-2' style={{ textAlign: "-webkit-center" }}>
+
+      {Object.keys(electronicproducts).length == 0 ? (
+        <p className="text-gray-600 text-center pt-40 pb-40">
+          Sorry all the Electronic Items are currently out of stock. New stock
+          coming soon. Stay Tuned!
+        </p>
+      ) : (
+        <div
+          className="pt-32 pb-36 md:ml-14 items-center lg:gap-4 lg:grid-cols-4 grid grid-cols-2"
+          style={{ textAlign: "-webkit-center" }}
+        >
           {Object.keys(electronicproducts).map((item) => {
             return (
-              <div className="max-w-xs shadow-lg rounded-xl p-6 relative group" key={electronicproducts[item]._id}>
+              <div
+                className="max-w-xs shadow-lg rounded-xl p-6 relative group"
+                key={electronicproducts[item]._id}
+              >
                 <div className="flex flex-col ">
                   <div>
-                    {stockFlag ? <div className="absolute z-10 flex flex-col top-2 right-2 items-center bg-green-600 text-white text-xs px-2 py-1 ml-3 rounded-lg">INSTOCK</div>
-                      : <div className="absolute z-10 flex flex-col top-2 right-2 items-center bg-red-600 text-white text-xs px-2 py-1 ml-3 rounded-lg">OUTOFSTOCK</div>}
+                    {stockFlag ? (
+                      <div className="absolute z-10 flex flex-col top-2 right-2 items-center bg-green-600 text-white text-xs px-2 py-1 ml-3 rounded-lg">
+                        INSTOCK
+                      </div>
+                    ) : (
+                      <div className="absolute z-10 flex flex-col top-2 right-2 items-center bg-red-600 text-white text-xs px-2 py-1 ml-3 rounded-lg">
+                        OUTOFSTOCK
+                      </div>
+                    )}
                     <div className="relative h-48 w-full mb-3">
                       {/* <div className="absolute flex flex-col top-0 -right-2 p-2">
                         <button onClick={() => { `${addToCart(electronicproducts[item].slug, 1, electronicproducts[item].price, electronicproducts[item].title , electronicproducts[item].size, electronicproducts[item].color, electronicproducts[item].category)}` }} className="transition ease-in duration-300 bg-gray-800  hover:text-purple-500 shadow hover:shadow-md text-white rounded-full w-8 h-8 text-center p-0.5"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" className="bi bi-cart ml-1" viewBox="0 0 16 16" id="IconChangeColor"> <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" id="mainIconPathAttribute"></path> </svg></button>
                       </div> */}
 
-                      <Link href={`/products/${electronicproducts[item].category}/${electronicproducts[item].slug}`}><img src={`${electronicproducts[item].img[0]}`} alt= {electronicproducts[item].title} className="w-full h-full object-contain rounded-2xl cursor-pointer" /></Link>
+                      <Link
+                        href={`/products/${electronicproducts[item].category}/${electronicproducts[item].slug}`}
+                      >
+                        <img
+                          src={`${electronicproducts[item].img[0]}`}
+                          alt={electronicproducts[item].title}
+                          className="w-full h-full object-contain rounded-2xl cursor-pointer"
+                        />
+                      </Link>
                     </div>
                     <div>
                       <div>
@@ -46,7 +96,13 @@ const Electronics = ({ electronicproducts, stockFlag }) => {
                         <span className="text-gray-400 whitespace-nowrap mr-3">4.60</span><span className="mr-2 text-gray-400">India</span>
                       </div> */}
                         <div className="items-center w-full justify-between min-w-0 ">
-                          <h2 className="text-base md:text-lg mr-auto cursor-pointer text-black hover:text-blue-700 overflow-hidden line-clamp-2 mb-2"><Link href={`/products/electronic-items/${electronicproducts[item].slug}`}>{electronicproducts[item].title}</Link></h2>
+                          <h2 className="text-base md:text-lg mr-auto cursor-pointer text-black hover:text-blue-700 overflow-hidden line-clamp-2 mb-2">
+                            <Link
+                              href={`/products/electronic-items/${electronicproducts[item].slug}`}
+                            >
+                              {electronicproducts[item].title}
+                            </Link>
+                          </h2>
                           {/* {electronicproducts[item].availableQty > 0 ? <div className="flex items-center bg-green-600 text-white text-xs px-2 py-1 ml-3 rounded-lg">INSTOCK</div>
                             : <div className="flex items-center bg-red-600 text-white text-xs px-2 py-1 ml-3 rounded-lg">OUTOFSTOCK</div>} */}
                         </div>
@@ -55,41 +111,90 @@ const Electronics = ({ electronicproducts, stockFlag }) => {
                         <div className="flex-1 md:inline-flex items-center  mb-3">
                           <div className="w-full flex-none text-sm flex items-center text-gray-600">
                             <ul className="flex flex-row justify-center items-center space-x-2">
-                            {electronicproducts[item].color.includes('white') && <li>
-                                <span className="block p-1 border-2 border-white hover:border-gray-500 rounded-full transition ease-in duration-300">
-                                  <a href={`/products/${electronicproducts[item].category}/${electronicproducts[item].slug}`} className="block w-3 h-3 bg-white rounded-full"></a>
-                                </span>
-                              </li>}
-                              {electronicproducts[item].color.includes('blue') && <li>
-                                <span className="block p-1 border-2 border-white hover:border-blue-600 rounded-full transition ease-in duration-300">
-                                  <a href={`/products/${electronicproducts[item].category}/${electronicproducts[item].slug}`} className="block w-3 h-3 bg-blue-600 rounded-full"></a>
-                                </span>
-                              </li>}
-                              {electronicproducts[item].color.includes('yellow') && <li>
-                                <span className="block p-1 border-2 border-white hover:border-yellow-400 rounded-full transition ease-in duration-300">
-                                  <a href={`/products/${electronicproducts[item].category}/${electronicproducts[item].slug}`} className="block w-3 h-3  bg-yellow-400 rounded-full"></a>
-                                </span>
-                              </li>}
-                              {electronicproducts[item].color.includes('purple') && <li>
-                                <span className="block p-1 border-2 border-white hover:border-purple-400 rounded-full transition ease-in duration-300">
-                                  <a href={`/products/${electronicproducts[item].category}/${electronicproducts[item].slug}`} className="block w-3 h-3  bg-purple-400 rounded-full"></a>
-                                </span>
-                              </li>}
-                              {electronicproducts[item].color.includes('black') && <li>
-                                <span className="block p-1 border-2 border-white hover:border-slate-800 rounded-full transition ease-in duration-300">
-                                  <a href={`/products/${electronicproducts[item].category}/${electronicproducts[item].slug}`} className="block w-3 h-3  bg-slate-800 rounded-full"></a>
-                                </span>
-                              </li>}
-                              {electronicproducts[item].color.includes('red') && <li>
-                                <span className="block p-1 border-2 border-white hover:border-red-500 rounded-full transition ease-in duration-300">
-                                  <a href={`/products/${electronicproducts[item].category}/${electronicproducts[item].slug}`} className="block w-3 h-3  bg-red-500 rounded-full"></a>
-                                </span>
-                              </li>}
-                              {electronicproducts[item].color.includes('green') && <li>
-                                <span className="block p-1 border-2 border-white hover:border-green-500 rounded-full transition ease-in duration-300">
-                                  <a href={`/products/${electronicproducts[item].category}/${electronicproducts[item].slug}`} className="block w-3 h-3  bg-green-500 rounded-full"></a>
-                                </span>
-                              </li>}
+                              {electronicproducts[item].color.includes(
+                                "white"
+                              ) && (
+                                <li>
+                                  <span className="block p-1 border-2 border-white hover:border-gray-500 rounded-full transition ease-in duration-300">
+                                    <a
+                                      href={`/products/${electronicproducts[item].category}/${electronicproducts[item].slug}`}
+                                      className="block w-3 h-3 bg-white rounded-full"
+                                    ></a>
+                                  </span>
+                                </li>
+                              )}
+                              {electronicproducts[item].color.includes(
+                                "blue"
+                              ) && (
+                                <li>
+                                  <span className="block p-1 border-2 border-white hover:border-blue-600 rounded-full transition ease-in duration-300">
+                                    <a
+                                      href={`/products/${electronicproducts[item].category}/${electronicproducts[item].slug}`}
+                                      className="block w-3 h-3 bg-blue-600 rounded-full"
+                                    ></a>
+                                  </span>
+                                </li>
+                              )}
+                              {electronicproducts[item].color.includes(
+                                "yellow"
+                              ) && (
+                                <li>
+                                  <span className="block p-1 border-2 border-white hover:border-yellow-400 rounded-full transition ease-in duration-300">
+                                    <a
+                                      href={`/products/${electronicproducts[item].category}/${electronicproducts[item].slug}`}
+                                      className="block w-3 h-3  bg-yellow-400 rounded-full"
+                                    ></a>
+                                  </span>
+                                </li>
+                              )}
+                              {electronicproducts[item].color.includes(
+                                "purple"
+                              ) && (
+                                <li>
+                                  <span className="block p-1 border-2 border-white hover:border-purple-400 rounded-full transition ease-in duration-300">
+                                    <a
+                                      href={`/products/${electronicproducts[item].category}/${electronicproducts[item].slug}`}
+                                      className="block w-3 h-3  bg-purple-400 rounded-full"
+                                    ></a>
+                                  </span>
+                                </li>
+                              )}
+                              {electronicproducts[item].color.includes(
+                                "black"
+                              ) && (
+                                <li>
+                                  <span className="block p-1 border-2 border-white hover:border-slate-800 rounded-full transition ease-in duration-300">
+                                    <a
+                                      href={`/products/${electronicproducts[item].category}/${electronicproducts[item].slug}`}
+                                      className="block w-3 h-3  bg-slate-800 rounded-full"
+                                    ></a>
+                                  </span>
+                                </li>
+                              )}
+                              {electronicproducts[item].color.includes(
+                                "red"
+                              ) && (
+                                <li>
+                                  <span className="block p-1 border-2 border-white hover:border-red-500 rounded-full transition ease-in duration-300">
+                                    <a
+                                      href={`/products/${electronicproducts[item].category}/${electronicproducts[item].slug}`}
+                                      className="block w-3 h-3  bg-red-500 rounded-full"
+                                    ></a>
+                                  </span>
+                                </li>
+                              )}
+                              {electronicproducts[item].color.includes(
+                                "green"
+                              ) && (
+                                <li>
+                                  <span className="block p-1 border-2 border-white hover:border-green-500 rounded-full transition ease-in duration-300">
+                                    <a
+                                      href={`/products/${electronicproducts[item].category}/${electronicproducts[item].slug}`}
+                                      className="block w-3 h-3  bg-green-500 rounded-full"
+                                    ></a>
+                                  </span>
+                                </li>
+                              )}
                             </ul>
                           </div>
                         </div>
@@ -104,11 +209,22 @@ const Electronics = ({ electronicproducts, stockFlag }) => {
                         </div> */}
                       </div>
                       <div className="md:flex space-x-2 text-sm font-medium justify-between">
-                        <div className="text-xl font-semibold mt-1">₹{electronicproducts[item].price.toLocaleString('en-IN')}</div>
-                        <Link href={`/products/${electronicproducts[item].category}/${electronicproducts[item].slug}`}>
-                        <button className={"mt-3 md:mt-0 transition ease-in duration-300 inline-flex items-center text-sm font-medium md:mb-0 bg-black px-5 py-2 hover:shadow-lg tracking-wider text-white rounded-full hover:bg-blue-700"}>
-                          <span>Buy Now</span>
-                        </button>
+                        <div className="text-xl font-semibold mt-1">
+                          ₹
+                          {electronicproducts[item].price.toLocaleString(
+                            "en-IN"
+                          )}
+                        </div>
+                        <Link
+                          href={`/products/${electronicproducts[item].category}/${electronicproducts[item].slug}`}
+                        >
+                          <button
+                            className={
+                              "mt-3 md:mt-0 transition ease-in duration-300 inline-flex items-center text-sm font-medium md:mb-0 bg-black px-5 py-2 hover:shadow-lg tracking-wider text-white rounded-full hover:bg-blue-700"
+                            }
+                          >
+                            <span>Buy Now</span>
+                          </button>
                         </Link>
                         {/* <button className="transition ease-in duration-300 inline-flex items-center text-sm font-medium mb-2 md:mb-0 bg-purple-500 px-5 py-2 hover:shadow-lg tracking-wider text-white rounded-full hover:bg-purple-600 ">
                   <span>Add Cart</span>
@@ -124,12 +240,10 @@ const Electronics = ({ electronicproducts, stockFlag }) => {
                   </div>
                 </div>
               </div>
-            )
-          })
-          }
-
+            );
+          })}
         </div>
-      }
+      )}
       {/* {Object.keys(stickers).length==0 ? <p className='text-gray-600 text-center mt-20 mb-52'>Sorry all the Stickers are currently out of stock. New stock coming soon. Stay Tuned!</p>:
     <section className="text-gray-600 body-font">
       <div className="container px-4 py-24 mx-auto">
@@ -152,40 +266,44 @@ const Electronics = ({ electronicproducts, stockFlag }) => {
       </div>
     </section>} */}
     </>
-  )
-}
+  );
+};
 
 export async function getServerSideProps(context) {
   if (!mongoose.connections[0].readyState) {
-    await mongoose.connect(process.env.MONGO_URI)
+    await mongoose.connect(process.env.MONGO_URI);
   }
-  let products = await Product.find({ category: 'electronic-items' })
+  let products = await Product.find({ category: "electronic-items" });
 
-  let electronicitems = {}
+  let electronicitems = {};
 
-  let stockFlag = false
+  let stockFlag = false;
 
   for (let item of products) {
-      if(item.title in electronicitems){
-
-          if(!electronicitems[item.title].color.includes(item.color) && item.availableQty>0){
-            stockFlag = true;
-            electronicitems[item.title].color.push(item.color)
-          }
-      }else{
-        electronicitems[item.title] = JSON.parse(JSON.stringify(item))
-            electronicitems[item.title].color = [item.color]
-
-            if(item.availableQty>0){
-              stockFlag = true;
-            }
+    if (item.title in electronicitems) {
+      if (
+        !electronicitems[item.title].color.includes(item.color) &&
+        item.availableQty > 0
+      ) {
+        stockFlag = true;
+        electronicitems[item.title].color.push(item.color);
       }
+    } else {
+      electronicitems[item.title] = JSON.parse(JSON.stringify(item));
+      electronicitems[item.title].color = [item.color];
 
+      if (item.availableQty > 0) {
+        stockFlag = true;
+      }
+    }
   }
 
   return {
-    props: { electronicproducts: JSON.parse(JSON.stringify(electronicitems)) , stockFlag: stockFlag }, // will be passed to the page component as props
-  }
+    props: {
+      electronicproducts: JSON.parse(JSON.stringify(electronicitems)),
+      stockFlag: stockFlag,
+    }, // will be passed to the page component as props
+  };
 }
 
-export default Electronics
+export default Electronics;
