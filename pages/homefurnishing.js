@@ -3,47 +3,15 @@ import Link from "next/link";
 import Head from "next/head";
 import mongoose from "mongoose";
 import Product from "../models/Product";
+import { NextSeo } from "next-seo";
 
 const HomeFurnishing = ({ homefurnishing }) => {
   return (
     <>
-      <Head>
-        <title>Homefurnishing items - Onstore</title>
-        <meta name="title" content="Buy Homefurnishing items from Onstore" />
-        <meta
-          name="description"
-          content="Discover endless possibilities at Onstore! Shop trendy fashion, stylish homeware, fresh groceries, cutting-edge electronics, and pampering beauty essentials - all with seamless online shopping, amazing deals, and fast delivery"
-        />
-        <meta
-          name="keywords"
-          content="onstore, onstore shopping, shopping, fashio items, electronics items, personal care items, beauty products, onstore vercel, buy fashion products"
-        />
-        <meta name="robots" content="index, follow" />
-        <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
-        <meta name="language" content="English" />
-        <link
-          rel="apple-touch-icon"
-          sizes="180x180"
-          href="/apple-touch-icon.png"
-        />
-        <link
-          rel="icon"
-          type="image/png"
-          sizes="32x32"
-          href="/favicon-32x32.png"
-        />
-        <link
-          rel="icon"
-          type="image/png"
-          sizes="16x16"
-          href="/favicon-16x16.png"
-        />
-        <link rel="manifest" href="/site.webmanifest" />
-        <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
-        <meta name="msapplication-TileColor" content="#da532c" />
-        <meta name="theme-color" content="#ffffff" />
-      </Head>
-
+     <NextSeo
+        title="Homefurnishing items - Onstore"
+        description="Discover endless possibilities at Onstore! Shop trendy fashion, stylish homeware, fresh groceries, cutting-edge electronics, and pampering beauty essentials - all with seamless online shopping, amazing deals, and fast delivery"
+      />
       {Object.keys(homefurnishing).length == 0 ? (
         <p className="text-gray-600 text-center pt-40 pb-40">
           Sorry all the Home Furnishing Items are currently out of stock. New
