@@ -11,7 +11,7 @@ const DisclaimerModal = ({ onClose }) => {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-75">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-75 px-4 sm:px-0">
       <div className="bg-white p-4 sm:p-8 max-w-4xl w-full rounded-lg shadow-lg">
         <div className="flex items-center justify-between p-2 sm:p-4 border-b rounded-t bg-blue-500 text-white">
           <h2 className="text-lg sm:text-2xl font-bold mb-2 sm:mb-4">
