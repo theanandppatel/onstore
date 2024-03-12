@@ -45,7 +45,7 @@ const Fashion = ({ fashionitems, stockFlag }) => {
         />
         <meta
           name="keywords"
-          content="onstore, onstore shopping, shopping, fashio items, electronics items, personal care items, beauty products, onstore vercel, buy fashion products"
+          content="onstore, onstore shopping, shopping, fashion items, electronics items, personal care items, beauty products, onstore vercel, buy fashion products"
         />
         <meta name="robots" content="index, follow" />
         <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />

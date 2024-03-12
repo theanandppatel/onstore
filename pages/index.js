@@ -31,7 +31,7 @@ const Home = ({ addToCart, featuredproducts, recommendedproducts }) => {
         <title>Home Page - Onstore</title>
         <meta
           name="title"
-          content="Onstore: Shop Fashion, Home Furnishing, Electronics, Beauty & Groceries items"
+          content="Onstore - Shop Fashion, Home Furnishing, Electronics, Beauty & Groceries items"
         />
         <meta
           name="description"
@@ -39,7 +39,7 @@ const Home = ({ addToCart, featuredproducts, recommendedproducts }) => {
         />
         <meta
           name="keywords"
-          content="onstore, onstore shopping, shopping, fashio items, electronics items, personal care items, beauty products, onstore vercel, buy fashion products"
+          content="onstore, onstore shopping, shopping, fashion items, electronics items, personal care items, beauty products, onstore vercel, buy fashion products, anand, anand patel"
         />
         <meta name="robots" content="index, follow" />
         <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
@@ -69,6 +69,7 @@ const Home = ({ addToCart, featuredproducts, recommendedproducts }) => {
 
       {showDisclaimer && <DisclaimerModal onClose={handleCloseDisclaimer} />}
 
+      <h1 className="hidden">Onstore Shop</h1>
       <div
         className="carousel relative container mx-auto"
         style={{ maxWidth: "1600px" }}
@@ -217,31 +218,6 @@ const Home = ({ addToCart, featuredproducts, recommendedproducts }) => {
               className="h-full w-full mx-auto flex pt-6 md:pt-0 md:items-center bg-cover bg-bottom"
               style={{ backgroundImage: `url('/images/carousel-3.webp')` }}
             >
-              {/* <div className="container mx-auto md:mx-24">
-                <div className="flex flex-col w-full lg:w-1/2 md:ml-16 items-center md:items-start px-6 tracking-wide">
-                  <span
-                    data-aos="fade-down"
-                    data-aos-delay="200"
-                    className="mb-2.5 rounded-md bg-violet-100 py-1 px-4 text-sm font-semibold text-violet-600 md:mb-5"
-                  >
-                    OFF 50%
-                  </span>
-                  <h2
-                    data-aos="fade-right"
-                    data-aos-delay="300"
-                    className="mb-5 text-center text-[2.5rem] font-bold leading-tight text-white md:text-left md:text-5xl"
-                  >
-                    An Industrial Take on Streetwear
-                  </h2>
-                  <h3
-                    data-aos="fade-right"
-                    data-aos-delay="400"
-                    className="font-regular mb-5 text-center text-lg leading-tight text-neutral-700 md:mb-10 md:text-left"
-                  >
-                    Anyone can beat you but no one can beat your outfit as long as you wear Dine outfits.
-                  </h3>
-                </div>
-              </div> */}
             </div>
           </div>
           <label
