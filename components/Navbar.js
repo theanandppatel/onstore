@@ -283,12 +283,12 @@ const NavbarEle = ({
             : "w-0 h-0 opacity-0 hidden animate-fadeOut"
         } duration-700`}
       >
-        <a
+        <button
           className="cursor-pointer fixed top-6 right-8 text-white hover:text-violet-700 text-7xl font-semibold duration-300"
           onClick={closeMenu}
         >
           &times;
-        </a>
+        </button>
         <div className="flex flex-col text-white text-center text-xl font-light space-y-3">
           <Link
             className="text-slate-200 hover:text-violet-700 duration-300"
@@ -327,7 +327,7 @@ const NavbarEle = ({
         <ul className="flex h-full">
           <Link href={"/"}>
             <li className="flex-1">
-              <a
+              <span
                 className={`flex h-full w-full flex-col items-center justify-center text-xs font-medium text-neutral-700 hover:text-violet-700 ${
                   fullScreenMenu ? "text-slate-200" : ""
                 }`}
@@ -347,11 +347,11 @@ const NavbarEle = ({
                   <polyline points="9 22 9 12 15 12 15 22"></polyline>
                 </svg>
                 <span className="mt-1">Home</span>
-              </a>
+              </span>
             </li>
           </Link>
           <li className="flex-1">
-            <a
+            <span
               onClick={openMenu}
               className={`flex h-full w-full flex-col items-center justify-center text-xs font-medium text-neutral-700 hover:text-violet-700 false ${
                 fullScreenMenu ? "text-slate-200" : ""
@@ -374,14 +374,14 @@ const NavbarEle = ({
                 <rect x="3" y="14" width="7" height="7"></rect>
               </svg>
               <span className="mt-1">Categories</span>
-            </a>
+            </span>
           </li>
           <li className="flex-1" onClick={() => {
                 console.log('click');
                 closeMenu();
                 toggleCart();
               }}>
-            <a
+            <span
               className={`flex h-full w-full flex-col items-center justify-center text-xs font-medium text-neutral-700 hover:text-violet-700 false ${
                 fullScreenMenu ? "text-slate-200" : ""
               }`}
@@ -403,15 +403,15 @@ const NavbarEle = ({
                 <path d="M16 10a4 4 0 0 1-8 0"></path>
               </svg>
               <span className="mt-1">Cart</span>
-            </a>
+            </span>
           </li>
-          <Link href={"/checkout"}>
             <li className="flex-1">
-              <a
-                className={`flex h-full w-full flex-col items-center justify-center text-xs font-medium text-neutral-700 hover:text-violet-700 false ${
-                  fullScreenMenu ? "text-slate-200" : ""
-                }`}
+              <Link
+              href={"/checkout"}
               >
+                <span className={`flex h-full w-full flex-col items-center justify-center text-xs font-medium text-neutral-700 hover:text-violet-700 false ${
+                  fullScreenMenu ? "text-slate-200" : ""
+                }`}>
                 <svg
                   fill="none"
                   stroke="currentColor"
@@ -455,11 +455,10 @@ const NavbarEle = ({
                     </g>{" "}
                   </g>
                 </svg>
-
                 <span className="mt-1">Checkout</span>
-              </a>
+                </span>
+              </Link>
             </li>
-          </Link>
           <li className="flex-1">
             <div
               onClick={handleUserLoggedIn}
@@ -491,7 +490,7 @@ const NavbarEle = ({
 
       {/* SideCart Start  */}
       <Transition.Root show={open} as={Fragment}>
-        <Dialog as="div" className="relative z-30" onClose={setOpen}>
+        <Dialog as="div" className="relative z-50" onClose={setOpen}>
           <Transition.Child
             as={Fragment}
             enter="ease-in-out duration-500"
@@ -516,7 +515,7 @@ const NavbarEle = ({
                   leaveFrom="translate-x-0"
                   leaveTo="translate-x-full"
                 >
-                  <Dialog.Panel className="pointer-events-auto w-screen max-w-md h-[92vh] md:h-[100vh]">
+                  <Dialog.Panel className="pointer-events-auto w-screen max-w-md">
                     <div className="flex h-full flex-col overflow-y-scroll bg-white shadow-xl">
                       <div className="flex-1 overflow-y-auto py-6 px-4 sm:px-6">
                         <div className="flex items-start justify-between">
@@ -691,7 +690,7 @@ const NavbarEle = ({
                         </div>
                         <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
                           <p className="hidden md:block">
-                            or
+                            or &nbsp;
                             <button
                               type="button"
                               className="font-medium text-indigo-600 hover:text-indigo-500"
