@@ -186,54 +186,6 @@ const Login = () => {
   const handleGoogleSignIn = async (e) => {
     e.preventDefault();
     let res = await signIn("google");
-    // if (response && response.success) {
-    //   // Do something with the message
-    // } else {
-    //   console.error('Sign-in failed.');
-    // }
-    // wrap the signIn function in a Promise
-
-    // if(session){
-    //     let res = await fetch(`http://localhost:3000/api/googlesignin`, {
-    //         method: 'POST',
-    //         headers: {
-    //             'Content-Type': 'application/json'
-
-    //         },
-    //         body: JSON.stringify(data)
-    //     });
-
-    //     let response = await res.json()
-
-    //     if (response.success) {
-    //         localStorage.setItem("myuser", JSON.stringify({ token: response.token, email: response.email }))
-    //         toast.success('Successfully logged in', {
-    //             position: "top-center",
-    //             autoClose: 2000,
-    //             hideProgressBar: false,
-    //             closeOnClick: true,
-    //             pauseOnHover: true,
-    //             draggable: true,
-    //             progress: undefined,
-    //         });
-
-    //         setTimeout(() => {
-    //             router.push('/')
-    //         }, 2000);
-
-    //     }
-    //     else {
-    //         toast.error('Invalid Credentials', {
-    //             position: "top-center",
-    //             autoClose: 4000,
-    //             hideProgressBar: false,
-    //             closeOnClick: true,
-    //             pauseOnHover: true,
-    //             draggable: true,
-    //             progress: undefined,
-    //         });
-    //     }
-    // }
   };
 
   const handlePassShow = () => {
